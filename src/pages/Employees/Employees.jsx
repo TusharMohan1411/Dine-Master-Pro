@@ -87,7 +87,7 @@ export default function Employees() {
                             <option value="clerk">Clerk</option>
                             <option value="receptionist">Receptionist</option>
                             <option value="waiter">Waiter</option>
-                            <option value="delivery_boy">Delivery Boy</option>
+                            <option value="Delivery Boy">Delivery Boy</option>
                         </select>
 
                         <button
