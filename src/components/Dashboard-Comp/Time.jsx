@@ -36,9 +36,9 @@ export default function Time() {
 
 
     return (
-        <div className="flex flex-col h-full justify-center">
-            <h1 className="font-bold text-[50px] text-black">{realTime}</h1>
-            <h1 className="text-xl text-black">{finalDate}</h1>
+        <div className="bg-white shadow-md rounded-lg flex flex-col h-full w-full p-4 justify-center">
+            <h1 className="font-bold text-[50px] text-green-500">{realTime}</h1>
+            <h1 className="text-[18px] font-semibold text-gray-500">{finalDate}</h1>
         </div>
     );
 }

@@ -19,14 +19,24 @@ export default function Employees() {
     const employeesRef = useRef();
 
     useEffect(() => {
-        function handleSearchEmployees() {
-            const newEmpData = employees.filter(emp =>
-                emp.name.toLowerCase().includes(searchedEmployee.toLowerCase())
-            );
-            setFilteredEmployees(newEmpData);
+        function handleFilterbyJobRole() {
+            let filterData = employees;
+            if (selectedFilter) {
+                filterData = filterData.filter(emp =>
+                    emp.role.toLowerCase() === selectedFilter.toLowerCase());
+            }
+            if (searchedEmployee) {
+                filterData = filterData.filter(emp =>
+                    emp.name.toLowerCase().includes(searchedEmployee.toLowerCase()));
+            }
+            setFilteredEmployees(filterData);
         }
-        handleSearchEmployees();
-    }, [searchedEmployee, employees]);
+        handleFilterbyJobRole();
+    }, [selectedFilter, searchedEmployee, employees]);
+
+    useEffect(() => {
+        setSearchedEmployee('');
+    }, [selectedFilter])
 
     function handleEmployeePortal(emp) {
         setShowEmployeeDialog(true);
@@ -43,18 +53,6 @@ export default function Employees() {
         setShowEmployeeDialog(false);
     }
 
-
-    useEffect(() => {
-        function handleFilterbyJobRole() {
-            if (selectedFilter === '') {
-                setFilteredEmployees(employees);
-            } else {
-                const filterData = employees.filter(emp => emp.role.toLowerCase() === selectedFilter.toLowerCase());
-                setFilteredEmployees(filterData);
-            }
-        }
-        handleFilterbyJobRole();
-    }, [selectedFilter, employees]);
 
     return (
         <>
@@ -74,6 +72,7 @@ export default function Employees() {
                             type="text"
                             name="empSearch"
                             id="empSearch"
+                            value={searchedEmployee}
                             placeholder='Search Employees'
                             className="px-4 h-3/4 my-auto rounded-xl shadow-sm focus:outline-none duration-200 ease-in focus:shadow-md mr-5"
                         />
