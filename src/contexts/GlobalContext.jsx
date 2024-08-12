@@ -1,4 +1,4 @@
-import { createContext } from "react"
+import { createContext, useEffect } from "react"
 import EMPLOYEES_DATA from "../data/employees";
 import { useState } from "react";
 import useWeather from "../Hooks/useWeather";
@@ -18,7 +18,14 @@ export default function GlobalState({ children }) {
     const { showd, weatherErrorMsg, wloading } = useWeather({ lat, lon });
 
     const [allBills, setAllBills] = useState([]);
-    const [currentBill, setCurrentBill] = useState({})
+    const [currentBill, setCurrentBill] = useState([])
+
+    const lt = allBills.length - 1;
+    useEffect(() => {
+        console.log(allBills);
+
+        console.log(allBills[lt]);
+    }, [allBills])
 
 
     return (

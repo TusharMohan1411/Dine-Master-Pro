@@ -11,7 +11,6 @@ export default function Bills() {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedItem, setSelectedItem] = useState('');
 
-    const [bill, setBill] = useState([]);
     const [currentItemInBill, setCurrentItemInBill] = useState({
         item: '',
         price: '',
@@ -40,7 +39,7 @@ export default function Bills() {
             amount: itemPrice * prevState.quantity
         }));
 
-        console.log(item);
+        // console.log(item);
     }
 
     function handleChange(event) {
@@ -54,16 +53,16 @@ export default function Bills() {
 
     function handleAddItemInBill(e) {
         e.preventDefault();
-        const existingItemIndex = bill.findIndex(item => item.item === currentItemInBill.item);
+        const existingItemIndex = currentBill.findIndex(item => item.item === currentItemInBill.item);
 
         if (existingItemIndex !== -1) {
-            const updatedBill = [...bill];
+            const updatedBill = [...currentBill];
             updatedBill[existingItemIndex].quantity = updatedBill[existingItemIndex].quantity + currentItemInBill.quantity;
             updatedBill[existingItemIndex].amount = updatedBill[existingItemIndex].price * updatedBill[existingItemIndex].quantity;
-            setBill(updatedBill);
+            setCurrentBill(updatedBill);
 
         } else {
-            setBill(prevState => [...prevState, currentItemInBill]);
+            setCurrentBill(prevState => [...prevState, currentItemInBill]);
         }
 
         setCurrentItemInBill({
@@ -77,11 +76,24 @@ export default function Bills() {
     }
 
     function handleDeleteItem(index) {
-        const updatedBill = bill.filter((_, i) => i !== index);
-        setBill(updatedBill);
+        const updatedBill = currentBill.filter((_, i) => i !== index);
+        setCurrentBill(updatedBill);
     }
 
-    const totalAmount = bill.reduce((total, item) => total + parseFloat(item.amount), 0);
+    const totalAmount = currentBill.reduce((total, item) => total + parseFloat(item.amount), 0);
+
+    function addCurrentBillInAllBills() {
+        if (currentBill.length !== 0) {
+            setAllBills(prevState => [...prevState, currentBill])
+            setCurrentBill([])
+        } else {
+            alert('Please add some items in bill')
+        }
+
+    }
+
+    const currentBillIndex = allBills.length + 1;
+
 
     return (
         <MainSection>
@@ -172,6 +184,9 @@ export default function Bills() {
 
                     <div className="w-full md:w-1/2">
                         <div className="bg-white p-6 rounded-lg shadow-md">
+                            <div className="mb-3">
+                                Bill No: {currentBillIndex}
+                            </div>
                             <table className="min-w-full bg-white text-center border">
                                 <thead>
                                     <tr>
@@ -183,7 +198,7 @@ export default function Bills() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {bill.map((item, index) => (
+                                    {currentBill.map((item, index) => (
                                         <tr key={index}>
                                             <td className="border px-4 py-2">{item.item}</td>
                                             <td className="border px-4 py-2">₹ {item.price}</td>
@@ -202,6 +217,9 @@ export default function Bills() {
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                        <div className="w-full text-center">
+                            <button onClick={addCurrentBillInAllBills} className='mt-4 bg-black hover:shadow-md hover:scale-110 duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>Submit Bill</button>
                         </div>
                     </div>
                 </div>
