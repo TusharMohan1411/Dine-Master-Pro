@@ -5,7 +5,7 @@ export default function WeatherComp() {
     const { showd } = useContext(GlobalContext);
 
     return (
-        <div className="bg-white shadow-md rounded-lg flex flex-col justify-between h-full w-full p-4">
+        <div className="bg-white shadow-md rounded-lg flex flex-col justify-center h-full w-full p-4">
             <div>
                 <p className="text-md text-gray-500 mb-2 font-semibold capitalize">{showd.description}</p>
             </div>

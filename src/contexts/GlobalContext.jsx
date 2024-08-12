@@ -3,6 +3,7 @@ import EMPLOYEES_DATA from "../data/employees";
 import { useState } from "react";
 import useWeather from "../Hooks/useWeather";
 import PRODUCTS from "../data/products";
+import useTime from "../Hooks/useTime";
 
 export const GlobalContext = createContext();
 
@@ -11,6 +12,9 @@ export default function GlobalState({ children }) {
 
     const lat = 30.365771;
     const lon = 76.767454;
+    const date = new Date();
+
+    const { finalDate, realTime, timeLoading } = useTime({ date })
 
     const [allProducts, setAllProducts] = useState(PRODUCTS);
 
@@ -32,6 +36,7 @@ export default function GlobalState({ children }) {
         <GlobalContext.Provider value={{
             employees, setEmployees,
             showd, weatherErrorMsg, wloading,
+            finalDate, realTime, timeLoading,
             allProducts, setAllProducts,
             allBills, setAllBills, currentBill, setCurrentBill
         }}

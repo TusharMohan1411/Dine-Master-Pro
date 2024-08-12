@@ -1,15 +1,19 @@
-import { useContext, useState, useRef } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import MainHeader from "../../components/Main/MainHeader";
 import MainSection from "../../components/Main/MainSection";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import { FaTimes } from 'react-icons/fa';
 import { TiEdit } from "react-icons/ti";
+import MainData from "../../components/Main/MainData";
+import BillModal from "./BillModal";
 
 export default function Bills() {
-    const { allProducts, allBills, setAllBills, currentBill, setCurrentBill } = useContext(GlobalContext);
+    const { allProducts, allBills, setAllBills, currentBill, setCurrentBill, finalDate, realTime } = useContext(GlobalContext);
 
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedItem, setSelectedItem] = useState('');
+    const [showModal, setShowModal] = useState(false);
+    const [selectedBill, setSelectedBill] = useState(null);
 
     const [currentItemInBill, setCurrentItemInBill] = useState({
         item: '',
@@ -82,148 +86,217 @@ export default function Bills() {
 
     const totalAmount = currentBill.reduce((total, item) => total + parseFloat(item.amount), 0);
 
+    const currentBillIndex = allBills.length + 1;
+
     function addCurrentBillInAllBills() {
         if (currentBill.length !== 0) {
-            setAllBills(prevState => [...prevState, currentBill])
+            const newBill = {
+                billNo: currentBillIndex,
+                items: currentBill,
+                totalAmount,
+                date: finalDate,
+                time: realTime
+            };
+
+            setAllBills(prevState => [...prevState, newBill]);
             setCurrentBill([])
         } else {
             alert('Please add some items in bill')
         }
-
     }
 
-    const currentBillIndex = allBills.length + 1;
+    const billModal = useRef();
+
+    function handleShowBillDetails(bill) {
+        setSelectedBill(bill);
+        setShowModal(true);
+    }
+
+    useEffect(() => {
+        if (showModal) {
+            billModal.current.open();
+        }
+    }, [showModal]);
+
+    function handleClose() {
+        setShowModal(false);
+        setSelectedBill(null);
+    }
 
 
     return (
-        <MainSection>
-            <MainHeader PageHeading={'Make Bills'}></MainHeader>
+        <>
+            {showModal &&
+                <BillModal ref={billModal} bill={selectedBill} onReset={handleClose} />
+            }
             <MainSection>
-                <div className="flex flex-wrap gap-5 justify-left pr-5 pt-5">
-                    <div className="w-full md:w-2/5">
-                        <form className="bg-white p-6 rounded-lg shadow-md w-full max-w-md mx-auto" onSubmit={handleAddItemInBill}>
-                            <div className="mb-4">
-                                <label htmlFor="category" className="block text-gray-700 font-bold mb-2">Category</label>
-                                <select
-                                    name="category"
-                                    className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 
+                <MainHeader PageHeading={'Make Bills'}></MainHeader>
+                <MainData>
+                    <div className="flex flex-wrap gap-5 w-full justify-left pr-5 pt-5">
+                        <div className="w-full md:w-2/5">
+                            <form className="bg-white p-6 rounded-lg shadow-md w-full max-w-md mx-auto" onSubmit={handleAddItemInBill}>
+                                <div className="mb-4">
+                                    <label htmlFor="category" className="block text-gray-700 font-bold mb-2">Category</label>
+                                    <select
+                                        name="category"
+                                        className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 
                                     rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 capitalize"
-                                    onChange={handleSelectCategory}
-                                    value={selectedCategory}
-                                >
-                                    <option value="">Select Category</option>
-                                    {Object.entries(allProducts).map(([key]) => (
-                                        <option
-                                            key={key}
-                                            value={key}
-                                            className="capitalize"
-                                        >
-                                            {key}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
+                                        onChange={handleSelectCategory}
+                                        value={selectedCategory}
+                                    >
+                                        <option value="">Select Category</option>
+                                        {Object.entries(allProducts).map(([key]) => (
+                                            <option
+                                                key={key}
+                                                value={key}
+                                                className="capitalize"
+                                            >
+                                                {key}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
 
-                            <div className="mb-4">
-                                <label htmlFor="Item" className="block text-gray-700 font-bold mb-2">Item</label>
-                                <select
-                                    name="Item"
-                                    className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 capitalize"
-                                    onChange={handleSelectItem}
-                                    required
-                                    value={selectedItem}
-                                >
-                                    <option value="">Select Item</option>
-                                    {selectedCategory && Object.entries(finalCategoryProducts).map(([key, item]) => (
-                                        <option
-                                            key={key}
-                                            value={key}
-                                            className="capitalize"
-                                        >
-                                            {item.name}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
+                                <div className="mb-4">
+                                    <label htmlFor="Item" className="block text-gray-700 font-bold mb-2">Item</label>
+                                    <select
+                                        name="Item"
+                                        className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 capitalize"
+                                        onChange={handleSelectItem}
+                                        required
+                                        value={selectedItem}
+                                    >
+                                        <option value="">Select Item</option>
+                                        {selectedCategory && Object.entries(finalCategoryProducts).map(([key, item]) => (
+                                            <option
+                                                key={key}
+                                                value={key}
+                                                className="capitalize"
+                                            >
+                                                {item.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
 
-                            <div className="mb-4">
-                                <label htmlFor="price" className="block text-gray-700 font-bold mb-2">Price ₹</label>
-                                <input
-                                    type="number"
-                                    name="price"
-                                    readOnly
-                                    value={currentItemInBill.price}
-                                    placeholder="Price"
-                                    className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                />
-                            </div>
+                                <div className="mb-4">
+                                    <label htmlFor="price" className="block text-gray-700 font-bold mb-2">Price ₹</label>
+                                    <input
+                                        type="number"
+                                        name="price"
+                                        readOnly
+                                        value={currentItemInBill.price}
+                                        placeholder="Price"
+                                        className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    />
+                                </div>
 
-                            <div className="mb-4">
-                                <label htmlFor="quantity" className="block text-gray-700 font-bold mb-2">Quantity</label>
-                                <input
-                                    type="number"
-                                    name="quantity"
-                                    placeholder="Quantity"
-                                    onChange={handleChange}
-                                    required
-                                    value={currentItemInBill.quantity}
-                                    className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                />
-                            </div>
+                                <div className="mb-4">
+                                    <label htmlFor="quantity" className="block text-gray-700 font-bold mb-2">Quantity</label>
+                                    <input
+                                        type="number"
+                                        name="quantity"
+                                        placeholder="Quantity"
+                                        onChange={handleChange}
+                                        required
+                                        value={currentItemInBill.quantity}
+                                        className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    />
+                                </div>
 
-                            <div className="flex items-center justify-between">
-                                <button
-                                    type="submit"
-                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                >
-                                    Add Item
-                                </button>
+                                <div className="flex items-center justify-between">
+                                    <button
+                                        type="submit"
+                                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                    >
+                                        Add Item
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div className="w-full md:w-1/2">
+                            <div className="bg-white p-6 rounded-lg shadow-md">
+                                <div className="mb-3 flex w-full justify-between">
+                                    <div>
+                                        {realTime}
+                                    </div>
+                                    <div className="font-bold text-xl">
+                                        Bill No: {currentBillIndex}
+                                    </div>
+                                    <div>
+                                        {finalDate}
+                                    </div>
+                                </div>
+                                <table className="min-w-full bg-white text-center border">
+                                    <thead>
+                                        <tr>
+                                            <th className="border py-2 text-black">Item</th>
+                                            <th className="border py-2 text-black">Price</th>
+                                            <th className="border py-2 text-black">Quantity</th>
+                                            <th className="border py-2 text-black">Amount</th>
+                                            <th className="border pl-3 py-4 text-black"><TiEdit size={25} /></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {currentBill.map((item, index) => (
+                                            <tr key={index}>
+                                                <td className="border px-4 py-2">{item.item}</td>
+                                                <td className="border px-4 py-2">₹ {item.price}</td>
+                                                <td className="border px-4 py-2">{item.quantity}</td>
+                                                <td className="border px-4 py-2">₹ {item.amount}</td>
+                                                <td className="border px-2  py-2">
+                                                    <button onClick={() => handleDeleteItem(index)}>
+                                                        <FaTimes className="text-red-500 cursor-pointer" />
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                        <tr>
+                                            <td colSpan={3} className="text-right text-black font-semibold py-5">Total Amount:</td>
+                                            <td className="text-black font-semibold py-5">₹ {totalAmount.toFixed(2)}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                        </form>
+                            <div className="w-full text-center">
+                                <button onClick={addCurrentBillInAllBills} className='mt-4 bg-black hover:shadow-md hover:scale-110 duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>Submit Bill</button>
+                            </div>
+                        </div>
                     </div>
-
-                    <div className="w-full md:w-1/2">
-                        <div className="bg-white p-6 rounded-lg shadow-md">
-                            <div className="mb-3">
-                                Bill No: {currentBillIndex}
+                    <div className="w-full pr-5 pt-5">
+                        <h2 className="text-4xl mt-3 font-bold mb-4 capitalize text-white w-full text-center bg-[#3952D1] p-2">All Bills</h2>
+                        <div className="flex flex-wrap-reverse gap-5 justify-between">
+                            <div className="flex justify-center w-full items-center md:w-2/5 bg-black text-white">
+                                <h2 className="w-full text-center ">
+                                    Total Sales
+                                </h2>
                             </div>
-                            <table className="min-w-full bg-white text-center border">
+                            <table className="grow bg-white text-center border">
                                 <thead>
                                     <tr>
-                                        <th className="border py-2 text-black">Item</th>
-                                        <th className="border py-2 text-black">Price</th>
-                                        <th className="border py-2 text-black">Quantity</th>
+                                        <th className="border py-2 text-black">Bill No.</th>
+                                        <th className="border py-2 text-black">Date</th>
+                                        <th className="border py-2 text-black">Time</th>
                                         <th className="border py-2 text-black">Amount</th>
-                                        <th className="border pl-3 py-4 text-black "><TiEdit size={25} /></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {currentBill.map((item, index) => (
-                                        <tr key={index}>
-                                            <td className="border px-4 py-2">{item.item}</td>
-                                            <td className="border px-4 py-2">₹ {item.price}</td>
-                                            <td className="border px-4 py-2">{item.quantity}</td>
-                                            <td className="border px-4 py-2">₹ {item.amount}</td>
-                                            <td className="border px-2  py-2">
-                                                <button onClick={() => handleDeleteItem(index)}>
-                                                    <FaTimes className="text-red-500 cursor-pointer" />
-                                                </button>
-                                            </td>
+                                    {allBills.map((bill, index) => (
+                                        <tr key={index} onClick={() => handleShowBillDetails(bill)} className="cursor-pointer">
+                                            <td className="border px-4 py-2">{bill.billNo}</td>
+                                            <td className="border px-4 py-2">{bill.date}</td>
+                                            <td className="border px-4 py-2">{bill.time}</td>
+                                            <td className="border px-4 py-2">₹ {bill.totalAmount.toFixed(2)}</td>
                                         </tr>
                                     ))}
-                                    <tr>
-                                        <td colSpan={3} className="text-right text-black font-semibold py-5">Total Amount:</td>
-                                        <td className="text-black font-semibold py-5">₹ {totalAmount.toFixed(2)}</td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <div className="w-full text-center">
-                            <button onClick={addCurrentBillInAllBills} className='mt-4 bg-black hover:shadow-md hover:scale-110 duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>Submit Bill</button>
-                        </div>
                     </div>
-                </div>
-            </MainSection>
-        </MainSection>
+                </MainData>
+            </MainSection >
+        </>
+
     );
 }
