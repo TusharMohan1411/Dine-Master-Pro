@@ -61,7 +61,7 @@ export default function Bills() {
 
         if (existingItemIndex !== -1) {
             const updatedBill = [...currentBill];
-            updatedBill[existingItemIndex].quantity = updatedBill[existingItemIndex].quantity + currentItemInBill.quantity;
+            updatedBill[existingItemIndex].quantity = parseFloat(updatedBill[existingItemIndex].quantity) + parseFloat(currentItemInBill.quantity);
             updatedBill[existingItemIndex].amount = updatedBill[existingItemIndex].price * updatedBill[existingItemIndex].quantity;
             setCurrentBill(updatedBill);
 
@@ -200,6 +200,7 @@ export default function Bills() {
                                         onChange={handleChange}
                                         required
                                         value={currentItemInBill.quantity}
+                                        min={1}
                                         className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                     />
                                 </div>

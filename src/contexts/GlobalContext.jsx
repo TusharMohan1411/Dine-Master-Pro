@@ -24,13 +24,6 @@ export default function GlobalState({ children }) {
     const [allBills, setAllBills] = useState([]);
     const [currentBill, setCurrentBill] = useState([])
 
-    const lt = allBills.length - 1;
-    useEffect(() => {
-        console.log(allBills);
-
-        console.log(allBills[lt]);
-    }, [allBills])
-
 
     return (
         <GlobalContext.Provider value={{
