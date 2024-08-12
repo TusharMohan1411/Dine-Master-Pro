@@ -22,8 +22,15 @@ export default function GlobalState({ children }) {
     const { showd, weatherErrorMsg, wloading } = useWeather({ lat, lon });
 
     const [allBills, setAllBills] = useState([]);
-    const [currentBill, setCurrentBill] = useState([])
+    const [currentBill, setCurrentBill] = useState([]);
+    const [totalSales, setTotalSales] = useState(0)
 
+    useEffect(() => {
+        const totalSalesCount = Object.values(allBills).reduce((count, crtBill) => {
+            return count + crtBill.totalAmount
+        }, 0)
+        setTotalSales(totalSalesCount);
+    }, [allBills])
 
     return (
         <GlobalContext.Provider value={{
@@ -31,7 +38,8 @@ export default function GlobalState({ children }) {
             showd, weatherErrorMsg, wloading,
             finalDate, realTime, timeLoading,
             allProducts, setAllProducts,
-            allBills, setAllBills, currentBill, setCurrentBill
+            allBills, setAllBills, currentBill, setCurrentBill,
+            totalSales, setTotalSales
         }}
         >
             {children}

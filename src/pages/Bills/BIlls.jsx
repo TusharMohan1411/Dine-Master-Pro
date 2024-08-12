@@ -8,7 +8,7 @@ import MainData from "../../components/Main/MainData";
 import BillModal from "./BillModal";
 
 export default function Bills() {
-    const { allProducts, allBills, setAllBills, currentBill, setCurrentBill, finalDate, realTime } = useContext(GlobalContext);
+    const { allProducts, allBills, setAllBills, currentBill, setCurrentBill, finalDate, realTime, totalSales } = useContext(GlobalContext);
 
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedItem, setSelectedItem] = useState('');
@@ -42,8 +42,6 @@ export default function Bills() {
             price: itemPrice,
             amount: itemPrice * prevState.quantity
         }));
-
-        // console.log(item);
     }
 
     function handleChange(event) {
@@ -132,7 +130,7 @@ export default function Bills() {
             <MainSection>
                 <MainHeader PageHeading={'Make Bills'}></MainHeader>
                 <MainData>
-                    <div className="flex flex-wrap gap-5 w-full justify-left pr-5 pt-5">
+                    <div className="flex flex-wrap gap-5 w-full justify-left pr-5">
                         <div className="w-full md:w-2/5">
                             <form className="bg-white p-6 rounded-lg shadow-md w-full max-w-md mx-auto" onSubmit={handleAddItemInBill}>
                                 <div className="mb-4">
@@ -266,11 +264,12 @@ export default function Bills() {
                         </div>
                     </div>
                     <div className="w-full pr-5 pt-5">
-                        <h2 className="text-4xl mt-3 font-bold mb-4 capitalize text-white w-full text-center bg-[#3952D1] p-2">All Bills</h2>
+                        <h2 className="text-4xl mt-3 font-bold mb-4 capitalize text-white w-full text-center bg-[#3952D1] p-2 rounded-lg">All Bills</h2>
                         <div className="flex flex-wrap-reverse gap-5 justify-between">
-                            <div className="flex justify-center w-full items-center md:w-2/5 bg-black text-white">
-                                <h2 className="w-full text-center ">
-                                    Total Sales
+                            <div className="flex justify-center w-full gap-2 rounded-lg text-2xl items-center md:w-2/5 bg-black text-white">
+                                <h2>Total Revenue:  </h2>
+                                <h2 className="text-center font-bold">
+                                    ₹ {totalSales}
                                 </h2>
                             </div>
                             <table className="grow bg-white text-center border">
