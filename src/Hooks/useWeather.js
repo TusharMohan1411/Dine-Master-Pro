@@ -36,7 +36,7 @@ export default function useWeather({ lat, lon }) {
                         humidity: data.main.humidity,
                         description: data.weather[0].description,
                     });
-                    console.log(data);
+                    // console.log(data);
                     setwLoading(false);
                 } else {
                     setwLoading(data.message || 'Error fetching data');

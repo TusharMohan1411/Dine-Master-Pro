@@ -8,15 +8,17 @@
 }
 
 .scrollable-element::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #F5F6FD; 
 }
 
 .scrollable-element::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #a7a7a7; 
+  border-radius: 15px;
 }
 
 .scrollable-element::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #a7a7a7; 
+  border-radius: 15px;
 }
 
 

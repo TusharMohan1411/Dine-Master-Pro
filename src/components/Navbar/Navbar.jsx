@@ -20,7 +20,7 @@ export default function Navbar() {
             icon: <FaCashRegister />
         },
         {
-            path: '/ourProducts',
+            path: '/ProductsCategories',
             name: 'Our Products',
             icon: <FaHamburger />
         },

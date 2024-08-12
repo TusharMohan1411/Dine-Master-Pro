@@ -1,28 +1,28 @@
 import { useEffect, useRef, useState } from "react";
 import PRODUCTS from "../../data/products";
-import ProductModal from "./ProductModal";
+// import ProductModal from "./ProductModal";
 
 export default function OurProducts() {
 
-    const [showModal, setShowModal] = useState(false);
-    const [currentProduct, setCurrentProduct] = useState(null);
-    const productDialog = useRef();
+    // const [showModal, setShowModal] = useState(false);
+    // const [currentProduct, setCurrentProduct] = useState(null);
+    // const productDialog = useRef();
     const [searchedItem, setSearchedItem] = useState('')
 
-    function handleViewProduct(currentItem) {
-        setShowModal(true);
-        setCurrentProduct(currentItem);
-    }
+    // function handleViewProduct(currentItem) {
+    //     setShowModal(true);
+    //     setCurrentProduct(currentItem);
+    // }
 
-    useEffect(() => {
-        if (showModal && productDialog.current) {
-            productDialog.current.open();
-        }
-    }, [showModal])
+    // useEffect(() => {
+    //     if (showModal && productDialog.current) {
+    //         productDialog.current.open();
+    //     }
+    // }, [showModal])
 
-    function handleCloseModal() {
-        setShowModal(false);
-    }
+    // function handleCloseModal() {
+    //     setShowModal(false);
+    // }
 
     let ALL_PRODUCTS = [...PRODUCTS];
     function handleSearchProducts() {
@@ -33,12 +33,14 @@ export default function OurProducts() {
 
     return (
         < >
-            {showModal && currentProduct &&
+            {/* {showModal && currentProduct &&
                 (<ProductModal
                     ref={productDialog}
                     product={currentProduct}
                     onReset={handleCloseModal}
-                />)}
+                />)} */}
+
+
             <section id="our-products-section" className="h-full pb-5 flex flex-col">
                 <div className="flex justify-between h-14 px-5">
                     <h1 className="text-4xl mt-3 font-bold mb-4">Our Products</h1>

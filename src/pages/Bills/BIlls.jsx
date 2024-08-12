@@ -1,105 +1,215 @@
-import { useState } from 'react';
-import PRODUCTS from './../../data/products';
+import { useContext, useState, useRef } from "react";
+import MainHeader from "../../components/Main/MainHeader";
+import MainSection from "../../components/Main/MainSection";
+import { GlobalContext } from "../../contexts/GlobalContext";
+import { FaTimes } from 'react-icons/fa';
+import { TiEdit } from "react-icons/ti";
 
 export default function Bills() {
-
-    const [addedItem, setAddedItem] = useState({
+    const { allProducts } = useContext(GlobalContext);
+    const [selectedCategory, setSelectedCategory] = useState('');
+    const [selectedItem, setSelectedItem] = useState('');
+    const [bill, setBill] = useState([]);
+    const [currentItemInBill, setCurrentItemInBill] = useState({
         item: '',
-        qty: '',
         price: '',
-        amount: '',
-    })
+        quantity: '',
+        amount: ''
+    });
 
-    const [totalItems, setTotalItems] = useState([])
-    const [totalAmount, setTotalAmount] = useState(0);
+    const categoryRef = useRef();
+    const quantityRef = useRef();
+
+    const initialCategoryProducts = selectedCategory ? allProducts[selectedCategory] : {};
+    const finalCategoryProducts = { ...initialCategoryProducts };
+    delete finalCategoryProducts.image;
+
+    function handleSelectCategory(e) {
+        setSelectedCategory(e.target.value);
+        setSelectedItem('');
+    }
+
+    function handleSelectItem(e) {
+        const selectedKey = e.target.value;
+        const item = finalCategoryProducts[selectedKey];
+        const itemPrice = item ? item.price : '';
+        setSelectedItem(selectedKey);
+        setCurrentItemInBill(prevState => ({
+            ...prevState,
+            item: item.name,
+            price: itemPrice,
+            amount: itemPrice * prevState.quantity
+        }));
 
 
-    function handleChangeInItem(event) {
+        console.log(item);
+
+    }
+
+    function handleChange(event) {
         const { name, value } = event.target;
-        setAddedItem(prevState => ({
+        setCurrentItemInBill(prevState => ({
             ...prevState,
             [name]: value,
-        }))
+            amount: name === 'quantity' ? prevState.price * value : prevState.amount
+        }));
     }
 
-    function handleAddProductinBill(e) {
+    function handleAddItemInBill(e) {
         e.preventDefault();
+        const existingItemIndex = bill.findIndex(item => item.item === currentItemInBill.item);
 
-        const amount = addedItem.qty * addedItem.price;
+        if (existingItemIndex !== -1) {
+            const updatedBill = [...bill];
+            updatedBill[existingItemIndex].quantity = updatedBill[existingItemIndex].quantity + currentItemInBill.quantity;
+            updatedBill[existingItemIndex].amount = updatedBill[existingItemIndex].price * updatedBill[existingItemIndex].quantity;
+            setBill(updatedBill);
 
-        const newItem = {
-            ...addedItem,
-            amount,
+        } else {
+            setBill(prevState => [...prevState, currentItemInBill]);
         }
 
-        setTotalItems(prevState => ([...prevState, newItem]))
-        setTotalAmount(prevAmount => prevAmount + amount)
+        setCurrentItemInBill({
+            item: '',
+            price: '',
+            quantity: '',
+            amount: ''
+        });
+        categoryRef.current.value = '';
+        quantityRef.current.value = '';
+        setSelectedCategory('');
+        setSelectedItem('');
     }
 
-    return (
-        <section id="bills-section" className="h-full pb-5 flex flex-col">
-            <div className="fixed w-full z-30 h-14">
-                <h1 className="text-4xl fixed mt-3 font-bold mb-4">Bills Maker</h1>
-            </div>
-            <div className="bills-cont-main mt-20 flex flex-wrap gap-7 rounded-md overflow-y-scroll ">
+    function handleDeleteItem(index) {
+        const updatedBill = bill.filter((_, i) => i !== index);
+        setBill(updatedBill);
+    }
 
-                {/* To make Bills */}
-                <div id="bill-make" className='flex flex-col bg-white p-6 rounded-lg shadow-md w-1/2 max-w-md mx-auto'>
-                    <h1 className="text-2xl font-bold mb-4">Add Items</h1>
-                    <div id="bill-form" className='flex flex-col'>
-                        <form className='flex flex-col gap-4' onSubmit={handleAddProductinBill}>
-                            <div>
-                                <label htmlFor='item' className="block text-gray-700 font-medium mb-1">Item</label>
-                                <select onChange={handleChangeInItem} id="item" name="item" className="block w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-2 pr-8 rounded leading-tight focus:outline-none focus:border-blue-500">
-                                    <option value="">Select Item</option>
-                                    {PRODUCTS.map(product => (
-                                        <option key={product.name} value={product.name}>{product.name}</option>
+    const totalAmount = bill.reduce((total, item) => total + parseFloat(item.amount), 0);
+
+    return (
+        <MainSection>
+            <MainHeader PageHeading={'Make Bills'}></MainHeader>
+            <MainSection>
+                <div className="flex flex-wrap gap-5 justify-left pr-5 pt-5">
+                    <div className="w-full md:w-2/5">
+                        <form className="bg-white p-6 rounded-lg shadow-md w-full max-w-md mx-auto" onSubmit={handleAddItemInBill}>
+                            <div className="mb-4">
+                                <label htmlFor="category" className="block text-gray-700 font-bold mb-2">Category</label>
+                                <select
+                                    name="category"
+                                    ref={categoryRef}
+                                    className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 capitalize"
+                                    onChange={handleSelectCategory}
+                                >
+                                    <option value="">Select Category</option>
+                                    {Object.entries(allProducts).map(([key]) => (
+                                        <option
+                                            key={key}
+                                            value={key}
+                                            className="capitalize"
+                                        >
+                                            {key}
+                                        </option>
                                     ))}
                                 </select>
                             </div>
-                            <div id="qty">
-                                <label htmlFor='qty' className="block text-gray-700 font-medium mb-1">Quantity</label>
-                                <input onChange={handleChangeInItem} type="number" name="qty" id="qty" className="block w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500" />
+
+                            <div className="mb-4">
+                                <label htmlFor="Item" className="block text-gray-700 font-bold mb-2">Item</label>
+                                <select
+                                    name="Item"
+                                    className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 capitalize"
+                                    onChange={handleSelectItem}
+                                // required
+                                >
+                                    <option value="">Select Item</option>
+                                    {selectedCategory && Object.entries(finalCategoryProducts).map(([key, item]) => (
+                                        <option
+                                            key={key}
+                                            value={key}
+                                            className="capitalize"
+                                        >
+                                            {item.name}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
-                            <div id="price">
-                                <label htmlFor='price' className="block text-gray-700 font-medium mb-1">Price</label>
-                                <input onChange={handleChangeInItem} type="number" name="price" id="price" className="block w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500" />
+
+                            <div className="mb-4">
+                                <label htmlFor="price" className="block text-gray-700 font-bold mb-2">Price ₹</label>
+                                <input
+                                    type="number"
+                                    name="price"
+                                    readOnly
+                                    value={currentItemInBill.price}
+                                    placeholder="Price"
+                                    className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                />
                             </div>
-                            <button type='submit' className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add Item</button>
+
+                            <div className="mb-4">
+                                <label htmlFor="quantity" ref={quantityRef} className="block text-gray-700 font-bold mb-2">Quantity</label>
+                                <input
+                                    type="number"
+                                    name="quantity"
+                                    placeholder="Quantity"
+                                    onChange={handleChange}
+                                    required
+                                    value={currentItemInBill.quantity}
+                                    className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                />
+                            </div>
+
+                            <div className="flex items-center justify-between">
+                                <button
+                                    type="submit"
+                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                >
+                                    Add Item
+                                </button>
+                            </div>
                         </form>
                     </div>
-                </div>
 
-                {/* To Show Bills */}
-                <div id="bill-make" className='flex flex-col bg-white p-6 rounded-lg shadow-md w-1/2 max-w-md mx-auto'>
-                    <h1 className="text-2xl font-bold mb-4">Final Bill</h1>
-                    <div className="billedItem overflow-x-auto">
-                        <table className="min-w-full bg-white border border-gray-200">
-                            <thead>
-                                <tr>
-                                    <th className="py-2 px-4 border-b text-left text-gray-700 font-semibold">Item</th>
-                                    <th className="py-2 px-4 border-b text-center text-gray-700 font-semibold">Price</th>
-                                    <th className="py-2 px-4 border-b text-center text-gray-700 font-semibold">Qty</th>
-                                    <th className="py-2 px-4 border-b text-center text-gray-700 font-semibold">Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {/* isme total items ki array se data aaega */}
-                                {totalItems.map(item => (
-                                    <tr key={item.item} className="hover:bg-gray-100">
-                                        <td className="py-2 px-4 border-b text-gray-700">{item.item}</td>
-                                        <td className="py-2 px-4 border-b text-center text-gray-700">₹ {item.price}</td>
-                                        <td className="py-2 px-4 border-b text-center text-gray-700">{item.qty}</td>
-                                        <td className="py-2 px-4 border-b text-center text-gray-700">₹ {item.amount}</td>
+                    <div className="w-full md:w-1/2">
+                        <div className="bg-white p-6 rounded-lg shadow-md">
+                            <table className="min-w-full bg-white text-center border">
+                                <thead>
+                                    <tr>
+                                        <th className="border py-2 text-black">Item</th>
+                                        <th className="border py-2 text-black">Price</th>
+                                        <th className="border py-2 text-black">Quantity</th>
+                                        <th className="border py-2 text-black">Amount</th>
+                                        <th className="border pl-3 py-4 text-black "><TiEdit size={25} /></th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                    <h1 className="text-xl font-bold mt-4">Total Amount: ₹ {totalAmount}</h1>
-                </div>
+                                </thead>
+                                <tbody>
+                                    {bill.map((item, index) => (
+                                        <tr key={index}>
+                                            <td className="border px-4 py-2">{item.item}</td>
+                                            <td className="border px-4 py-2">₹ {item.price}</td>
+                                            <td className="border px-4 py-2">{item.quantity}</td>
+                                            <td className="border px-4 py-2">₹ {item.amount}</td>
+                                            <td className="border px-2  py-2">
+                                                <button onClick={() => handleDeleteItem(index)}>
+                                                    <FaTimes className="text-red-500 cursor-pointer" />
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                    <tr>
+                                        <td colSpan={3} className="text-right text-black font-semibold py-5">Total Amount:</td>
+                                        <td className="text-black font-semibold py-5">₹ {totalAmount.toFixed(2)}</td>
 
-            </div>
-        </section >
-    )
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </MainSection>
+        </MainSection>
+    );
 }

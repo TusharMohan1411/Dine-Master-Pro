@@ -3,10 +3,12 @@ import './App.css'
 import RootLayout from "./components/Navbar/RootLayout";
 import Dashboard from './pages/Dashboard/Dashboard';
 import Bills from './pages/Bills/BIlls';
-import OurProducts from './pages/Our Products/OurProducts';
 import Employees from './pages/Employees/Employees';
 import Weather from './pages/Weather/Weather';
 import AddEmployee from "./pages/Employees/AddEmployee";
+import ProductsCategories from "./pages/Our Products/ProductsCategories";
+import ProductTypes from "./pages/Our Products/ProductTypes";
+import ProductDetails from "./pages/Our Products/ProductDetails";
 
 function App() {
 
@@ -16,8 +18,24 @@ function App() {
       element: <RootLayout />,
       children: [
         { index: true, element: <Dashboard /> },
+        // Bills
         { path: 'bills', element: <Bills /> },
-        { path: 'ourProducts', element: <OurProducts /> },
+
+        // Products 
+        {
+          path: 'ProductsCategories',
+          children: [
+            { index: true, element: <ProductsCategories /> },
+            {
+              path: ':categoryName', children: [
+                { index: true, element: <ProductTypes /> },
+                { path: ':productName', element: <ProductDetails /> },
+              ]
+            }
+          ]
+        },
+
+        // Employees
         {
           path: 'employees',
           children: [
@@ -25,6 +43,8 @@ function App() {
             { path: 'addEmployee', element: <AddEmployee /> },
           ]
         },
+
+        // Weather
         { path: 'weather', element: <Weather /> },
 
       ]
@@ -36,4 +56,5 @@ function App() {
   )
 }
 
-export default App
+export default App;
+
