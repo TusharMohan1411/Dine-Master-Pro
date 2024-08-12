@@ -19,9 +19,6 @@ export default function Bills() {
         amount: ''
     });
 
-    const categoryRef = useRef();
-    const quantityRef = useRef();
-
     const initialCategoryProducts = selectedCategory && allProducts[selectedCategory];
     const finalCategoryProducts = { ...initialCategoryProducts };
     delete finalCategoryProducts.image;
@@ -33,7 +30,7 @@ export default function Bills() {
 
     function handleSelectItem(e) {
         const selectedKey = e.target.value;
-        const item = finalCategoryProducts[selectedKey];
+        const item = selectedKey ? finalCategoryProducts[selectedKey] : '';
         const itemPrice = item ? item.price : '';
         setSelectedItem(selectedKey);
         setCurrentItemInBill(prevState => ({
@@ -43,9 +40,7 @@ export default function Bills() {
             amount: itemPrice * prevState.quantity
         }));
 
-
         console.log(item);
-
     }
 
     function handleChange(event) {
@@ -77,8 +72,6 @@ export default function Bills() {
             quantity: '',
             amount: ''
         });
-        categoryRef.current.value = '';
-        quantityRef.current.value = '';
         setSelectedCategory('');
         setSelectedItem('');
     }
@@ -101,10 +94,10 @@ export default function Bills() {
                                 <label htmlFor="category" className="block text-gray-700 font-bold mb-2">Category</label>
                                 <select
                                     name="category"
-                                    ref={categoryRef}
                                     className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 
                                     rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 capitalize"
                                     onChange={handleSelectCategory}
+                                    value={selectedCategory}
                                 >
                                     <option value="">Select Category</option>
                                     {Object.entries(allProducts).map(([key]) => (
@@ -126,8 +119,9 @@ export default function Bills() {
                                     className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 capitalize"
                                     onChange={handleSelectItem}
                                     required
+                                    value={selectedItem}
                                 >
-                                    {!selectedCategory && <option value="">Select Item</option>}
+                                    <option value="">Select Item</option>
                                     {selectedCategory && Object.entries(finalCategoryProducts).map(([key, item]) => (
                                         <option
                                             key={key}
@@ -153,7 +147,7 @@ export default function Bills() {
                             </div>
 
                             <div className="mb-4">
-                                <label htmlFor="quantity" ref={quantityRef} className="block text-gray-700 font-bold mb-2">Quantity</label>
+                                <label htmlFor="quantity" className="block text-gray-700 font-bold mb-2">Quantity</label>
                                 <input
                                     type="number"
                                     name="quantity"
