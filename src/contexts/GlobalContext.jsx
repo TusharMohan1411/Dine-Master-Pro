@@ -17,12 +17,16 @@ export default function GlobalState({ children }) {
     const [employees, setEmployees] = useState(EMPLOYEES_DATA);
     const { showd, weatherErrorMsg, wloading } = useWeather({ lat, lon });
 
+    const [allBills, setAllBills] = useState([]);
+    const [currentBill, setCurrentBill] = useState({})
+
 
     return (
         <GlobalContext.Provider value={{
             employees, setEmployees,
             showd, weatherErrorMsg, wloading,
-            allProducts, setAllProducts
+            allProducts, setAllProducts,
+            allBills, setAllBills, currentBill, setCurrentBill
         }}
         >
             {children}

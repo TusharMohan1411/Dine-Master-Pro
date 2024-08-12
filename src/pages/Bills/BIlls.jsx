@@ -6,9 +6,11 @@ import { FaTimes } from 'react-icons/fa';
 import { TiEdit } from "react-icons/ti";
 
 export default function Bills() {
-    const { allProducts } = useContext(GlobalContext);
+    const { allProducts, allBills, setAllBills, currentBill, setCurrentBill } = useContext(GlobalContext);
+
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedItem, setSelectedItem] = useState('');
+
     const [bill, setBill] = useState([]);
     const [currentItemInBill, setCurrentItemInBill] = useState({
         item: '',
@@ -20,7 +22,7 @@ export default function Bills() {
     const categoryRef = useRef();
     const quantityRef = useRef();
 
-    const initialCategoryProducts = selectedCategory ? allProducts[selectedCategory] : {};
+    const initialCategoryProducts = selectedCategory && allProducts[selectedCategory];
     const finalCategoryProducts = { ...initialCategoryProducts };
     delete finalCategoryProducts.image;
 
@@ -100,7 +102,8 @@ export default function Bills() {
                                 <select
                                     name="category"
                                     ref={categoryRef}
-                                    className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 capitalize"
+                                    className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 
+                                    rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 capitalize"
                                     onChange={handleSelectCategory}
                                 >
                                     <option value="">Select Category</option>
@@ -122,9 +125,9 @@ export default function Bills() {
                                     name="Item"
                                     className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 capitalize"
                                     onChange={handleSelectItem}
-                                // required
+                                    required
                                 >
-                                    <option value="">Select Item</option>
+                                    {!selectedCategory && <option value="">Select Item</option>}
                                     {selectedCategory && Object.entries(finalCategoryProducts).map(([key, item]) => (
                                         <option
                                             key={key}
@@ -202,7 +205,6 @@ export default function Bills() {
                                     <tr>
                                         <td colSpan={3} className="text-right text-black font-semibold py-5">Total Amount:</td>
                                         <td className="text-black font-semibold py-5">₹ {totalAmount.toFixed(2)}</td>
-
                                     </tr>
                                 </tbody>
                             </table>
