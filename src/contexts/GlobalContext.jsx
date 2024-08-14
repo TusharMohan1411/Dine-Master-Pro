@@ -25,7 +25,10 @@ export default function GlobalState({ children }) {
     const [totalSales, setTotalSales] = useState(0)
 
     useEffect(() => {
-        const totalSalesCount = Object.values(allBills).reduce((count, crtBill) => {
+        const activeBills = allBills.filter((bill) => bill.cancelled == false);
+
+        const totalSalesCount = Object.values(activeBills).reduce((count, crtBill) => {
+
             return count + crtBill.totalAmount
         }, 0)
         setTotalSales(totalSalesCount);

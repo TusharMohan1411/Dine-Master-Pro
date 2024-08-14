@@ -3,12 +3,14 @@ import MainHeader from "../../components/Main/MainHeader";
 import MainSection from "../../components/Main/MainSection";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import { FaTimes } from 'react-icons/fa';
-import { TiEdit } from "react-icons/ti";
 import MainData from "../../components/Main/MainData";
 import BillModal from "./BillModal";
+import { MdDelete } from "react-icons/md";
 
 export default function Bills() {
-    const { allProducts, allBills, setAllBills, currentBill, setCurrentBill, finalDate, realTime, totalSales } = useContext(GlobalContext);
+    const { allProducts, allBills, setAllBills,
+        currentBill, setCurrentBill, finalDate,
+        realTime, totalSales } = useContext(GlobalContext);
 
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedItem, setSelectedItem] = useState('');
@@ -93,7 +95,8 @@ export default function Bills() {
                 items: currentBill,
                 totalAmount,
                 date: finalDate,
-                time: realTime
+                time: realTime,
+                cancelled: false
             };
 
             setAllBills(prevState => [...prevState, newBill]);
@@ -121,11 +124,24 @@ export default function Bills() {
         setSelectedBill(null);
     }
 
+    function handleCancelBill() {
+        if (window.confirm('Do you want to cancel this Bill?')) {
+            const updatedBills = allBills.map(bill => {
+                if (bill.billNo === selectedBill.billNo) {
+                    return { ...bill, cancelled: true };
+                }
+                return bill;
+            });
+            setAllBills(updatedBills);
+            setShowModal(false);
+            setSelectedBill(null);
+        }
+    }
 
     return (
         <>
             {showModal &&
-                <BillModal ref={billModal} bill={selectedBill} onReset={handleClose} />
+                <BillModal ref={billModal} bill={selectedBill} onReset={handleClose} cancelBill={handleCancelBill} />
             }
             <MainSection>
                 <MainHeader PageHeading={'Make Bills'}></MainHeader>
@@ -284,10 +300,10 @@ export default function Bills() {
                                 <tbody>
                                     {allBills.map((bill, index) => (
                                         <tr key={index} onClick={() => handleShowBillDetails(bill)} className="cursor-pointer">
-                                            <td className="border px-4 py-2">{bill.billNo}</td>
-                                            <td className="border px-4 py-2">{bill.date}</td>
-                                            <td className="border px-4 py-2">{bill.time}</td>
-                                            <td className="border px-4 py-2">₹ {bill.totalAmount.toFixed(2)}</td>
+                                            <td className={`border px-4 py-2 ${bill.cancelled ? 'text-red-500 bg-gray-200' : ''}`}>{bill.billNo}</td>
+                                            <td className={`border px-4 py-2 ${bill.cancelled ? 'text-red-500 bg-gray-200' : ''}`}>{bill.date}</td>
+                                            <td className={`border px-4 py-2 ${bill.cancelled ? 'text-red-500 bg-gray-200' : ''}`}>{bill.time}</td>
+                                            <td className={`border px-4 py-2 ${bill.cancelled ? 'text-red-500 bg-gray-200' : ''}`}>₹ {bill.totalAmount.toFixed(2)}</td>
                                         </tr>
                                     ))}
                                 </tbody>
