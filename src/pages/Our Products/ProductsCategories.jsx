@@ -6,6 +6,7 @@ import MainHeader from "../../components/Main/MainHeader";
 import MainData from "../../components/Main/MainData";
 import AddCategoryModal from "./AddPCategory";
 import { useNavigate } from "react-router-dom";
+import { FaPlus } from "react-icons/fa";
 
 export default function ProductsCategories() {
     const { allProducts } = useContext(GlobalContext);
@@ -60,8 +61,14 @@ export default function ProductsCategories() {
                             </div>
                         </div>
                     ))}
-                    <div>
-                        <button onClick={openAddCategoryModal} className="px-4 py-2 bg-green-500 text-white rounded">Add Category</button>
+                    <div
+                        onClick={openAddCategoryModal}
+                        className="flex items-center justify-center cursor-pointer w-64 h-64 bg-white rounded-lg p-4 shadow-lg hover:shadow-xl transition-transform duration-300 hover:scale-105"
+                    >
+                        <div className="flex flex-col items-center justify-center text-blue-900 border-[3px] border-blue-800 rounded-lg h-full w-full text-4xl">
+                            <FaPlus />
+                            <span className="mt-2 text-lg font-semibold">Add Category</span>
+                        </div>
                     </div>
                 </MainData>
             </MainSection>
