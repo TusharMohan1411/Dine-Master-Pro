@@ -1,37 +1,93 @@
-import { useContext } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { GlobalContext } from "../../contexts/GlobalContext";
+import MainSection from "../../components/Main/MainSection";
+import MainHeader from "../../components/Main/MainHeader";
+import MainData from "../../components/Main/MainData";
+import { FaSearch } from "react-icons/fa";
 
 export default function Weather() {
-    const { showd, weatherErrorMsg, wloading } = useContext(GlobalContext);
+    const { showd, weatherErrorMsg, wloading, setCityName, weatherImg } = useContext(GlobalContext);
+    const city = useRef()
+
+    function handleSetCityName(e) {
+        e.preventDefault();
+        setCityName(city.current.value)
+        city.current.value = '';
+    }
 
     return (
-        <section id="weather-section" className="h-full pb-5 flex flex-col">
-            <div className="flex justify-between h-14 px-5">
-                <h1 className="text-4xl mt-3 font-bold mb-4">Weather Forecast</h1>
-            </div>
-            <div className="weather-cont-main mt-2 pt-2 px-5 pb-7 flex flex-col items-center gap-7 rounded-md overflow-y-scroll overflow-x-hidden">
+        <MainSection>
+            <MainHeader PageHeading={'Weather Forecast'}>
+                <form onSubmit={handleSetCityName} className="flex gap-4">
+                    <input
+                        type="text"
+                        name="cityName"
+                        placeholder="Search City"
+                        className="px-4 h-3/4 my-auto rounded-xl shadow-sm focus:outline-none duration-200 ease-in focus:shadow-md"
+                        ref={city} />
+                    <button type="submit" ><FaSearch size={20} /></button>
+                </form>
+            </MainHeader>
+
+            <MainData>
                 {wloading ? (
                     <div className="text-center">
                         <p className="text-lg font-medium">Loading Data... Please wait</p>
                     </div>
                 ) : (
-                    <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
+                    <div className="w-full p-6 rounded-lg">
                         {weatherErrorMsg ? (
                             <p className="text-red-500 font-medium">{weatherErrorMsg}</p>
                         ) : (
-                            <div className="space-y-4">
-                                <p className="text-2xl font-bold">City Name: {showd.cityName}</p>
-                                <p className="text-lg">Temperature: {showd.temp} °C</p>
-                                <p className="text-lg">Feels Like: {showd.feels_like} °C</p>
-                                <p className="text-lg">Max Temperature: {showd.maxTemp} °C</p>
-                                <p className="text-lg">Min Temperature: {showd.minTemp} °C</p>
-                                <p className="text-lg">Humidity: {showd.humidity} %</p>
-                                <p className="text-lg capitalize">Description: {showd.description}</p>
+                            <div className="flex justify-center items-center flex-col lg:flex-row gap-5">
+
+                                <div className="bg-white md:p-5 p-3 w-full rounded-lg shadow-lg flex gap-3 flex-col ">
+                                    <div className="flex items-center">
+                                        <h1 className="text-5xl font-bold text-black">
+                                            {showd.city}
+                                        </h1>
+                                        <div className=" w-20">
+                                            <img src={`https://openweathermap.org/img/wn/${showd.icon}@2x.png`}
+                                                alt="Weather Image"
+                                                className="w-full object-cover" />
+                                        </div>
+                                    </div>
+                                    <div className="w-full">
+                                        <img
+                                            src={weatherImg}
+                                            alt="Weather Image"
+                                            className="h-full w-full object-cover rounded-md"
+                                        />
+                                    </div>
+                                    <p className="text-xl capitalize font-semibold text-gray-500 mt-2">{showd.description}</p>
+                                </div>
+
+                                <div className="flex min-w-1/2 w-full h-full gap-5 flex-wrap grow">
+                                    <div className="bg-white flex flex-col gap-3 justify-center items-center p-3 shadow-lg rounded-lg lg:h-56 lg:w-2/5 h-full w-full  text-center">
+                                        <h2 className="text-4xl font-bold text-black">{showd.temp} °C</h2>
+                                        <p className="text-lg">Temperature</p>
+                                    </div>
+                                    <div className="bg-white flex flex-col gap-3 justify-center items-center p-3 shadow-lg rounded-lg lg:h-56 lg:w-2/5 h-full w-full text-center ">
+                                        <h2 className="text-4xl font-bold text-black">{showd.feels_like} °C</h2>
+                                        <p className="text-lg">Feels Like</p>
+                                    </div>
+                                    <div className="bg-white flex flex-col gap-3 justify-center items-center p-3 shadow-lg rounded-lg lg:h-56 lg:w-2/5 h-full w-full text-center ">
+                                        <h2 className="text-4xl font-bold text-black">{showd.humidity}%</h2>
+                                        <p className="text-lg">Humidity</p>
+                                    </div>
+                                    <div className="bg-white flex flex-col gap-3 justify-center items-center p-3 shadow-lg rounded-lg lg:h-56 lg:w-2/5 h-full w-full text-center ">
+                                        <h2 className="text-4xl font-bold text-black">{showd.windSpeed} Km/h</h2>
+                                        <p className="text-lg">Wind Speed</p>
+                                    </div>
+
+                                </div>
                             </div>
                         )}
                     </div>
                 )}
-            </div>
-        </section>
+
+            </MainData>
+
+        </MainSection>
     );
 }

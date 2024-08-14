@@ -10,16 +10,15 @@ export const GlobalContext = createContext();
 // eslint-disable-next-line react/prop-types
 export default function GlobalState({ children }) {
 
-    const lat = 30.365771;
-    const lon = 76.767454;
     const date = new Date();
-
     const { finalDate, realTime, timeLoading } = useTime({ date })
 
     const [allProducts, setAllProducts] = useState(PRODUCTS);
 
     const [employees, setEmployees] = useState(EMPLOYEES_DATA);
-    const { showd, weatherErrorMsg, wloading } = useWeather({ lat, lon });
+
+    const [cityName, setCityName] = useState();
+    const { showd, weatherErrorMsg, wloading, weatherImg } = useWeather({ cityName });
 
     const [allBills, setAllBills] = useState([]);
     const [currentBill, setCurrentBill] = useState([]);
@@ -35,7 +34,7 @@ export default function GlobalState({ children }) {
     return (
         <GlobalContext.Provider value={{
             employees, setEmployees,
-            showd, weatherErrorMsg, wloading,
+            showd, weatherErrorMsg, wloading, cityName, setCityName, weatherImg,
             finalDate, realTime, timeLoading,
             allProducts, setAllProducts,
             allBills, setAllBills, currentBill, setCurrentBill,

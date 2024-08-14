@@ -234,7 +234,7 @@ export default function Bills() {
                                             <th className="border py-2 text-black">Price</th>
                                             <th className="border py-2 text-black">Quantity</th>
                                             <th className="border py-2 text-black">Amount</th>
-                                            <th className="border pl-3 py-4 text-black"><TiEdit size={25} /></th>
+                                            <th className="border py-4 text-black">Del</th>
                                         </tr>
                                     </thead>
                                     <tbody>
