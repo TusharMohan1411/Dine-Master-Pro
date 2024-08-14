@@ -6,6 +6,7 @@ import { FaTimes } from 'react-icons/fa';
 import MainData from "../../components/Main/MainData";
 import BillModal from "./BillModal";
 import { MdDelete } from "react-icons/md";
+import EMPLOYEES_DATA from "../../data/employees";
 
 export default function Bills() {
     const { allProducts, allBills, setAllBills,
@@ -16,6 +17,7 @@ export default function Bills() {
     const [selectedItem, setSelectedItem] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [selectedBill, setSelectedBill] = useState(null);
+    const empReferenceRef = useRef()
 
     const [currentItemInBill, setCurrentItemInBill] = useState({
         item: '',
@@ -96,11 +98,13 @@ export default function Bills() {
                 totalAmount,
                 date: finalDate,
                 time: realTime,
+                empReference: empReferenceRef.current.value,
                 cancelled: false
             };
 
             setAllBills(prevState => [...prevState, newBill]);
             setCurrentBill([])
+            empReferenceRef.current.value = '';
         } else {
             alert('Please add some items in bill')
         }
@@ -255,7 +259,7 @@ export default function Bills() {
                                     </thead>
                                     <tbody>
                                         {currentBill.map((item, index) => (
-                                            <tr key={index}>
+                                            <tr key={index} >
                                                 <td className="border px-4 py-2">{item.item}</td>
                                                 <td className="border px-4 py-2">₹ {item.price}</td>
                                                 <td className="border px-4 py-2">{item.quantity}</td>
@@ -273,6 +277,28 @@ export default function Bills() {
                                         </tr>
                                     </tbody>
                                 </table>
+                                <div className="my-4">
+                                    <label htmlFor="empReference" className="block text-gray-700 font-bold mb-2">Referred By: </label>
+                                    <select
+                                        name="empReference"
+                                        className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 
+                                    rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 capitalize"
+                                        ref={empReferenceRef}
+                                    >
+                                        <option value="">
+                                            Select Employee
+                                        </option>
+                                        {EMPLOYEES_DATA.map((EMP) => (
+                                            <option
+                                                key={EMP.name}
+                                                value={EMP.name}
+                                                className="capitalize"
+                                            >
+                                                {EMP.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
                             </div>
                             <div className="w-full text-center">
                                 <button onClick={addCurrentBillInAllBills} className='mt-4 bg-black hover:shadow-md hover:scale-110 duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>Submit Bill</button>
@@ -299,7 +325,7 @@ export default function Bills() {
                                 </thead>
                                 <tbody>
                                     {allBills.map((bill, index) => (
-                                        <tr key={index} onClick={() => handleShowBillDetails(bill)} className="cursor-pointer">
+                                        <tr key={index} onClick={() => handleShowBillDetails(bill)} className="cursor-pointer hover:bg-cyan-100 hover:font-semibold duration-100 ease-in">
                                             <td className={`border px-4 py-2 ${bill.cancelled ? 'text-red-500 bg-gray-200' : ''}`}>{bill.billNo}</td>
                                             <td className={`border px-4 py-2 ${bill.cancelled ? 'text-red-500 bg-gray-200' : ''}`}>{bill.date}</td>
                                             <td className={`border px-4 py-2 ${bill.cancelled ? 'text-red-500 bg-gray-200' : ''}`}>{bill.time}</td>

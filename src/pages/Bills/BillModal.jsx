@@ -40,7 +40,7 @@ const BillModal = forwardRef(function BillModal({ bill, onReset, cancelBill }, r
                             <h2 className="text-red-600 font-semibold text-2xl">Cancelled Bill</h2>
                         </div>
                     }
-                    <div className="bg-white p-6 rounded-lg shadow-md">
+                    <div className="bg-white px-6 py-6 rounded-lg shadow-md">
                         <div className="mb-3 flex w-full justify-between">
                             <div>
                                 {bill.time}
@@ -77,6 +77,9 @@ const BillModal = forwardRef(function BillModal({ bill, onReset, cancelBill }, r
                                 </tr>
                             </tbody>
                         </table>
+                        {bill.empReference &&
+                            <h2 className="mt-4">Referred By: {bill.empReference}</h2>
+                        }
                     </div>
                 </div>
             </div>

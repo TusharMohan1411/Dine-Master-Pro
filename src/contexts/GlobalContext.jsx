@@ -28,7 +28,6 @@ export default function GlobalState({ children }) {
         const activeBills = allBills.filter((bill) => bill.cancelled == false);
 
         const totalSalesCount = Object.values(activeBills).reduce((count, crtBill) => {
-
             return count + crtBill.totalAmount
         }, 0)
         setTotalSales(totalSalesCount);
