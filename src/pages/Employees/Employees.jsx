@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Employees() {
 
-    const { employees } = useContext(GlobalContext);
+    const { employees, setEmployees } = useContext(GlobalContext);
 
     const [searchedEmployee, setSearchedEmployee] = useState('');
     const [currentEmployee, setCurrentEmployee] = useState({});
@@ -53,6 +53,13 @@ export default function Employees() {
         setShowEmployeeDialog(false);
     }
 
+    const uniqueRoles = [...new Set(employees.map(emp => emp.role))];
+
+    function handleDeleteEmployee(empl) {
+        const updatedEmployees = employees.filter(empl => empl.name !== currentEmployee.name)
+        setEmployees(updatedEmployees)
+        setShowEmployeeDialog(false)
+    }
 
     return (
         <>
@@ -61,6 +68,7 @@ export default function Employees() {
                     EmployeeDetails={currentEmployee}
                     ref={employeesRef}
                     onClose={onClose}
+                    onDeleteEmployee={handleDeleteEmployee}
                 />
             }
             <section id="employees-section" className="h-full pb-5 flex flex-col">
@@ -81,12 +89,9 @@ export default function Employees() {
                             className="px-4 py-2 rounded-lg shadow-sm focus:outline-none mr-5 focus:ring-2 focus:ring-blue-500"
                         >
                             <option value="">Job Role</option>
-                            <option value="manager">Manager</option>
-                            <option value="accountant">Accountant</option>
-                            <option value="clerk">Clerk</option>
-                            <option value="receptionist">Receptionist</option>
-                            <option value="waiter">Waiter</option>
-                            <option value="Delivery Boy">Delivery Boy</option>
+                            {uniqueRoles.map((role) => (
+                                <option value={role} key={role}>{role}</option>
+                            ))}
                         </select>
 
                         <button

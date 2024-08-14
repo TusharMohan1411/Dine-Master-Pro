@@ -2,7 +2,7 @@
 import { forwardRef, useImperativeHandle, useRef } from "react"
 import { createPortal } from 'react-dom';
 
-const EmployeeModal = forwardRef(function EmployeeModal({ EmployeeDetails, onClose }, ref) {
+const EmployeeModal = forwardRef(function EmployeeModal({ EmployeeDetails, onClose, onDeleteEmployee }, ref) {
     const dialogEmployee = useRef();
 
     useImperativeHandle(ref, () => {
@@ -12,7 +12,7 @@ const EmployeeModal = forwardRef(function EmployeeModal({ EmployeeDetails, onClo
             }
         }
     })
-    console.log(EmployeeDetails.address);
+
     return createPortal(
         <dialog
             ref={dialogEmployee}
@@ -38,6 +38,7 @@ const EmployeeModal = forwardRef(function EmployeeModal({ EmployeeDetails, onClo
                     <form method="dialog">
                         <button type="button" onClick={onClose} className="bg-black text-white px-8 py-2 mt-3 rounded-lg">Close</button>
                     </form>
+                    <button type="button" onClick={() => onDeleteEmployee(EmployeeDetails)} className="bg-black text-white px-8 py-2 mt-3 rounded-lg">Delete Employee</button>
                 </div>
             </div>
         </dialog>, document.getElementById('modal')

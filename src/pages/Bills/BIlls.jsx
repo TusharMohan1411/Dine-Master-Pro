@@ -5,13 +5,11 @@ import { GlobalContext } from "../../contexts/GlobalContext";
 import { FaTimes } from 'react-icons/fa';
 import MainData from "../../components/Main/MainData";
 import BillModal from "./BillModal";
-import { MdDelete } from "react-icons/md";
-import EMPLOYEES_DATA from "../../data/employees";
 
 export default function Bills() {
     const { allProducts, allBills, setAllBills,
         currentBill, setCurrentBill, finalDate,
-        realTime, totalSales } = useContext(GlobalContext);
+        realTime, totalSales, employees } = useContext(GlobalContext);
 
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedItem, setSelectedItem] = useState('');
@@ -288,7 +286,7 @@ export default function Bills() {
                                         <option value="">
                                             Select Employee
                                         </option>
-                                        {EMPLOYEES_DATA.map((EMP) => (
+                                        {employees.map((EMP) => (
                                             <option
                                                 key={EMP.name}
                                                 value={EMP.name}
