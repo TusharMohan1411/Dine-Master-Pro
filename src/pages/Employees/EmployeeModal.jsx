@@ -5,7 +5,7 @@ import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-const EmployeeModal = forwardRef(function EmployeeModal({ EmployeeDetails, onClose, onDeleteEmployee, onEditEmployee }, ref) {
+const EmployeeModal = forwardRef(function EmployeeModal({ EmployeeDetails, onClose, onDeleteEmployee }, ref) {
     const dialogEmployee = useRef();
     const navigate = useNavigate()
 

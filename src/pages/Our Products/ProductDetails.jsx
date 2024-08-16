@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { GlobalContext } from "../../contexts/GlobalContext";
 import MainSection from "../../components/Main/MainSection";
 import MainHeader from "../../components/Main/MainHeader";
@@ -9,12 +9,23 @@ export default function ProductDetails() {
 
     const { categoryName, productName } = useParams();
     const { allProducts } = useContext(GlobalContext);
+    const navigate = useNavigate();
 
     const currentProduct = allProducts[categoryName][productName];
 
     return (
         <MainSection>
-            <MainHeader PageHeading={'Product Details'}></MainHeader>
+            <MainHeader PageHeading={'Product Details'}>
+                <div className="flex h-full w-fit items-center">
+                    <h1 onClick={() => navigate(`/ProductsCategories/${categoryName}`)}
+                        className="hover:font-semibold ease-in duration-75 text-xl cursor-pointer capitalize"
+                    >
+                        {categoryName}
+                    </h1>
+                    <span>{'>'}</span>
+                    <span className="hover:font-semibold ease-in duration-75 text-xl cursor-pointer capitalize"> {currentProduct.name}</span>
+                </div>
+            </MainHeader>
 
             {currentProduct ?
                 <MainData>

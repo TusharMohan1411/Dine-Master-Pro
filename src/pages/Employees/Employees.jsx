@@ -64,11 +64,6 @@ export default function Employees() {
         }
     }
 
-    function handleEditEmployee() {
-
-
-    }
-
     return (
         <>
             {showEmployeeDialog &&
@@ -77,7 +72,6 @@ export default function Employees() {
                     ref={employeesRef}
                     onClose={onClose}
                     onDeleteEmployee={handleDeleteEmployee}
-                    onEditEmployee={handleEditEmployee}
                 />
             }
             <section id="employees-section" className="h-full pb-5 flex flex-col">

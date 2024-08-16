@@ -40,19 +40,13 @@ export default function EditEmployeeDetails() {
         navigate('/employees');
     }
 
-    console.log(currentEmpForEdit.joiningDate);
-
-    function handleBack(e) {
-        navigate('/employees')
-    }
-
 
     return (
         <>
             <MainSection>
                 <MainHeader PageHeading={'Edit Employee Details'}>
                     <div className="flex h-full w-fit items-center">
-                        <h1 onClick={handleBack} className="hover:font-semibold hover:scale-105 ease-in duration-75 text-xl cursor-pointer">{'<'}Go Back</h1>
+                        <h1 onClick={() => navigate('/employees')} className="hover:font-semibold hover:scale-105 ease-in duration-75 text-xl cursor-pointer">{'<'}Go Back</h1>
                     </div>
                 </MainHeader>
                 <MainData>
