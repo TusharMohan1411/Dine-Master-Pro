@@ -9,6 +9,7 @@ import AddEmployee from "./pages/Employees/AddEmployee";
 import ProductsCategories from "./pages/Our Products/ProductsCategories";
 import ProductTypes from "./pages/Our Products/ProductTypes";
 import ProductDetails from "./pages/Our Products/ProductDetails";
+import EditEmployeeDetails from "./pages/Employees/EditEmployee";
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
           children: [
             { index: true, element: <Employees /> },
             { path: 'addEmployee', element: <AddEmployee /> },
+            { path: 'editEmployeeDetails', element: <EditEmployeeDetails /> }
           ]
         },
 

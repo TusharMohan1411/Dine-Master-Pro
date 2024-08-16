@@ -15,6 +15,7 @@ import DeliveryBoy5 from "../../public/images/employees-images/deliveryboy-5.jpg
 
 const EMPLOYEES_DATA = [
     {
+        id: "EMP001",
         name: "Roshan Singh",
         role: "Manager",
         salary: 56500,
@@ -23,6 +24,7 @@ const EMPLOYEES_DATA = [
         address: "House-50, Deshpur Colony, Ambala, Haryana",
     },
     {
+        id: "EMP002",
         name: "Pooja Sharma",
         role: "Receptionist",
         salary: 32000,
@@ -31,6 +33,7 @@ const EMPLOYEES_DATA = [
         address: "House-12, Shivaji Nagar, Pune, Maharashtra",
     },
     {
+        id: "EMP003",
         name: "Amit Verma",
         role: "Accountant",
         salary: 45000,
@@ -39,6 +42,7 @@ const EMPLOYEES_DATA = [
         address: "House-22, Rohini, Delhi",
     },
     {
+        id: "EMP004",
         name: "Sunita Rani",
         role: "Clerk",
         salary: 28000,
@@ -47,6 +51,7 @@ const EMPLOYEES_DATA = [
         address: "House-76, Sector-45, Gurugram, Haryana",
     },
     {
+        id: "EMP005",
         name: "Vikram Singh",
         role: "Chef",
         salary: 40000,
@@ -55,6 +60,7 @@ const EMPLOYEES_DATA = [
         address: "House-34, Civil Lines, Jaipur, Rajasthan",
     },
     {
+        id: "EMP006",
         name: "Anjali Sinha",
         role: "Chef",
         salary: 38000,
@@ -63,6 +69,7 @@ const EMPLOYEES_DATA = [
         address: "House-89, Kankarbagh, Patna, Bihar",
     },
     {
+        id: "EMP007",
         name: "Rahul Deshmukh",
         role: "Chef",
         salary: 41000,
@@ -71,6 +78,7 @@ const EMPLOYEES_DATA = [
         address: "House-67, Bandra, Mumbai, Maharashtra",
     },
     {
+        id: "EMP008",
         name: "Ravi Kumar",
         role: "Waiter",
         salary: 22000,
@@ -79,6 +87,7 @@ const EMPLOYEES_DATA = [
         address: "House-101, Model Town, Ludhiana, Punjab",
     },
     {
+        id: "EMP009",
         name: "Suresh Yadav",
         role: "Waiter",
         salary: 21000,
@@ -87,6 +96,7 @@ const EMPLOYEES_DATA = [
         address: "House-55, Chandni Chowk, Delhi",
     },
     {
+        id: "EMP010",
         name: "Rohan Mehta",
         role: "Delivery Boy",
         salary: 18000,
@@ -95,6 +105,7 @@ const EMPLOYEES_DATA = [
         address: "House-22, MG Road, Bangalore, Karnataka",
     },
     {
+        id: "EMP011",
         name: "Aakash Jain",
         role: "Delivery Boy",
         salary: 17500,
@@ -103,6 +114,7 @@ const EMPLOYEES_DATA = [
         address: "House-78, DLF Phase 3, Gurugram, Haryana",
     },
     {
+        id: "EMP012",
         name: "Sahil Khan",
         role: "Delivery Boy",
         salary: 18500,
@@ -111,6 +123,7 @@ const EMPLOYEES_DATA = [
         address: "House-34, Aundh, Pune, Maharashtra",
     },
     {
+        id: "EMP013",
         name: "Vivek Pandey",
         role: "Delivery Boy",
         salary: 19000,
@@ -119,6 +132,7 @@ const EMPLOYEES_DATA = [
         address: "House-99, Laxmi Nagar, Delhi",
     },
     {
+        id: "EMP014",
         name: "Arjun Singh",
         role: "Delivery Boy",
         salary: 17000,

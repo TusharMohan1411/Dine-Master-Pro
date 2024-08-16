@@ -55,10 +55,18 @@ export default function Employees() {
 
     const uniqueRoles = [...new Set(employees.map(emp => emp.role))];
 
-    function handleDeleteEmployee(empl) {
-        const updatedEmployees = employees.filter(empl => empl.name !== currentEmployee.name)
-        setEmployees(updatedEmployees)
-        setShowEmployeeDialog(false)
+    function handleDeleteEmployee() {
+        if (window.confirm('Do you want to delete this Employee?')) {
+            const updatedEmployees = employees.filter(empl => empl.name !== currentEmployee.name)
+            setEmployees(updatedEmployees)
+            setShowEmployeeDialog(false)
+            alert('Employee Deleted Successfully.')
+        }
+    }
+
+    function handleEditEmployee() {
+
+
     }
 
     return (
@@ -69,6 +77,7 @@ export default function Employees() {
                     ref={employeesRef}
                     onClose={onClose}
                     onDeleteEmployee={handleDeleteEmployee}
+                    onEditEmployee={handleEditEmployee}
                 />
             }
             <section id="employees-section" className="h-full pb-5 flex flex-col">
@@ -105,7 +114,6 @@ export default function Employees() {
 
                     {filteredEmployees && filteredEmployees.length > 0
                         ? filteredEmployees.map((employee, index) => (
-                            // employee.role === 'Waiter' &&
                             <div
                                 onClick={() => handleEmployeePortal(employee)}
                                 key={index}

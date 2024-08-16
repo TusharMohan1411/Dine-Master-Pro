@@ -7,6 +7,7 @@ export default function AddEmployee() {
     const navigate = useNavigate();
 
     const [newEmployee, setNewEmployee] = useState({
+        id: '',
         name: "",
         role: "",
         salary: "",
@@ -14,8 +15,17 @@ export default function AddEmployee() {
         joiningDate: "",
     });
 
+    function formatDate(dateString) {
+        return new Date(dateString).toLocaleDateString('en-IN', {
+            year: 'numeric',
+            month: 'long',
+            day: '2-digit'
+        });
+    };
+
     function handleInputChange(event) {
         const { name, value } = event.target;
+
         setNewEmployee((prevState) => ({
             ...prevState,
             [name]: value,
@@ -25,9 +35,15 @@ export default function AddEmployee() {
     function handleSubmit(event) {
         event.preventDefault();
 
-        setEmployees([...employees, newEmployee]);
+        const formattedEmployee = {
+            ...newEmployee,
+            joiningDate: formatDate(newEmployee.joiningDate),
+        };
+
+        setEmployees([...employees, formattedEmployee]);
 
         setNewEmployee({
+            id: '',
             name: "",
             role: "",
             salary: "",
@@ -44,10 +60,20 @@ export default function AddEmployee() {
             <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
                 <input
                     type="text"
+                    name="id"
+                    placeholder="Id"
+                    value={newEmployee.id}
+                    onChange={handleInputChange}
+                    required
+                    className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                />
+                <input
+                    type="text"
                     name="name"
                     placeholder="Name"
                     value={newEmployee.name}
                     onChange={handleInputChange}
+                    required
                     className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
                 <input
@@ -56,6 +82,7 @@ export default function AddEmployee() {
                     placeholder="Role"
                     value={newEmployee.role}
                     onChange={handleInputChange}
+                    required
                     className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
                 <input
@@ -63,6 +90,8 @@ export default function AddEmployee() {
                     name="salary"
                     placeholder="Salary"
                     value={newEmployee.salary}
+                    required
+                    min={1}
                     onChange={handleInputChange}
                     className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
@@ -75,10 +104,11 @@ export default function AddEmployee() {
                     className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
                 <input
-                    type="text"
+                    type="date"
                     name="joiningDate"
                     placeholder="Joining Date"
                     value={newEmployee.joiningDate}
+                    required
                     onChange={handleInputChange}
                     className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
@@ -88,6 +118,7 @@ export default function AddEmployee() {
                     placeholder="Address"
                     value={newEmployee.address}
                     onChange={handleInputChange}
+                    required
                     className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
                 <button
