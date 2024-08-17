@@ -18,12 +18,12 @@ export default function Navbar() {
 
 
     const navClass = 'text-white flex gap-3 text-xl ease-in duration-200 ';
-    const activeNavClass = 'text-yellow-400 md:translate-x-2';
+    const activeNavClass = 'text-cyan-400 md:translate-x-2';
 
     return (
-        <div className="h-full bg-[#F5F6FD] p-1 md:p-[20px] flex w-full md:w-auto ">
+        <div className="h-full bg-[#F5F6FD] p-0 md:p-[20px] flex w-full md:w-auto ">
             <div
-                className={`bg-[#06163a] md:w-[210px] w-[40px] lg:w-[280px] text-white rounded-2xl shadow-lg 
+                className={`bg-[#06163a] md:w-[210px] w-[40px] lg:w-[280px] text-white md:rounded-2xl shadow-lg 
                     h-full p-2 md:p-5`}
             >
                 <div className="flex">
