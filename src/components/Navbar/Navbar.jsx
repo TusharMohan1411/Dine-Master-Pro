@@ -18,7 +18,7 @@ export default function Navbar() {
 
 
     const navClass = 'text-white flex gap-3 text-xl ease-in duration-200 ';
-    const activeNavClass = 'text-cyan-400 md:translate-x-2';
+    const activeNavClass = 'text-yellow-300 md:translate-x-2';
 
     return (
         <div className="h-full bg-[#F5F6FD] p-0 md:p-[20px] flex w-full md:w-auto ">
@@ -30,7 +30,7 @@ export default function Navbar() {
                     <h1 className='hidden md:block text-[26px] font-bold'>
                         {"DineMaster Pro"}
                     </h1>
-                    <h1 className='md:hidden flex w-full flex-col justify-center items-center text-yellow-300 text-2xl font-bold'>
+                    <h1 className='md:hidden flex w-full flex-col justify-center items-center text-cyan-400 text-2xl font-bold'>
                         <span>D</span>
                         <span>M</span>
                     </h1>
@@ -40,7 +40,7 @@ export default function Navbar() {
                     {navLinks.map((item) => (
                         <div
                             key={item.name}
-                            className="navLinks-cont duration-100 ease-in"
+                            className="navLinks-cont duration-100 ease-in text-cyan-500"
                         >
                             <NavLink
                                 to={item.path}
