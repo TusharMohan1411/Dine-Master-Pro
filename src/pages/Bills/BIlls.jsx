@@ -148,9 +148,9 @@ export default function Bills() {
             <MainSection>
                 <MainHeader PageHeading={'Make Bills'}></MainHeader>
                 <MainData>
-                    <div className="flex flex-wrap gap-5 w-full justify-left pr-5">
+                    <div className="flex flex-wrap md:flex-row flex-col gap-5 w-full justify-left pr-2 md:pr-5">
                         <div className="w-full md:w-2/5">
-                            <form className="bg-white p-6 rounded-lg shadow-md w-full max-w-md mx-auto" onSubmit={handleAddItemInBill}>
+                            <form className="bg-white p-3 md:p-6 rounded-lg shadow-md w-full max-w-md mx-auto" onSubmit={handleAddItemInBill}>
                                 <div className="mb-4">
                                     <label htmlFor="category" className="block text-gray-700 font-bold mb-2">Category</label>
                                     <select
@@ -233,35 +233,35 @@ export default function Bills() {
                         </div>
 
                         <div className="w-full md:w-1/2">
-                            <div className="bg-white p-6 rounded-lg shadow-md">
-                                <div className="mb-3 flex w-full justify-between">
-                                    <div>
+                            <div className="bg-white p-3 md:p-6 rounded-lg shadow-md">
+                                <div className="mb-3 flex w-full items-center justify-between">
+                                    <div className="text-[14px] md:text-[16px]">
                                         {realTime}
                                     </div>
-                                    <div className="font-bold text-xl">
+                                    <div className="font-bold text-[18px] md:text-[22px]">
                                         Bill No: {currentBillIndex}
                                     </div>
-                                    <div>
+                                    <div className="text-[14px] md:text-[16px]">
                                         {finalDate}
                                     </div>
                                 </div>
                                 <table className="min-w-full bg-white text-center border">
                                     <thead>
                                         <tr>
-                                            <th className="border py-2 text-black">Item</th>
-                                            <th className="border py-2 text-black">Price</th>
-                                            <th className="border py-2 text-black">Quantity</th>
-                                            <th className="border py-2 text-black">Amount</th>
-                                            <th className="border py-4 text-black">Del</th>
+                                            <th className="border py-3 px-1 text-[14px] md:text-[16px] text-black">Item</th>
+                                            <th className="border py-2 px-1 text-[14px] md:text-[16px] text-black">Price</th>
+                                            <th className="border py-2 px-1 text-[14px] md:text-[16px] text-black">Qty</th>
+                                            <th className="border py-2 px-1 text-[14px] md:text-[16px] text-black">Amount</th>
+                                            <th className="border py-4 px-1 text-[14px] md:text-[16px] text-black">Del</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {currentBill.map((item, index) => (
                                             <tr key={index} >
-                                                <td className="border px-4 py-2">{item.item}</td>
-                                                <td className="border px-4 py-2">₹ {item.price}</td>
-                                                <td className="border px-4 py-2">{item.quantity}</td>
-                                                <td className="border px-4 py-2">₹ {item.amount}</td>
+                                                <td className="border px-1 text-[14px] md:text-[16px] md:px-4 py-2">{item.item}</td>
+                                                <td className="border px-1 text-[14px] md:text-[16px] md:px-4 py-2">₹ {item.price}</td>
+                                                <td className="border px-1 text-[14px] md:text-[16px] md:px-4 py-2">{item.quantity}</td>
+                                                <td className="border px-1 text-[14px] md:text-[16px] md:px-4py-2">₹ {item.amount}</td>
                                                 <td className="border px-2  py-2">
                                                     <button onClick={() => handleDeleteItem(index)}>
                                                         <FaTimes className="text-red-500 cursor-pointer" />
@@ -271,7 +271,7 @@ export default function Bills() {
                                         ))}
                                         <tr>
                                             <td colSpan={3} className="text-right text-black font-semibold py-5">Total Amount:</td>
-                                            <td className="text-black font-semibold py-5">₹ {totalAmount.toFixed(2)}</td>
+                                            <td className="text-black font-semibold py-2 md:py-5 text-[14px] md:text-[16px] ">₹ {totalAmount}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -299,14 +299,16 @@ export default function Bills() {
                                 </div>
                             </div>
                             <div className="w-full text-center">
-                                <button onClick={addCurrentBillInAllBills} className='mt-4 bg-black hover:shadow-md hover:scale-110 duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>Submit Bill</button>
+                                <button onClick={addCurrentBillInAllBills}
+                                    className='mt-4 bg-black hover:shadow-md hover:scale-110 duration-200 text-white font-bold py-2
+                                 px-4 rounded focus:outline-none focus:shadow-outline'>Submit Bill</button>
                             </div>
                         </div>
                     </div>
-                    <div className="w-full pr-5 pt-5">
-                        <h2 className="text-4xl mt-3 font-bold mb-4 capitalize text-white w-full text-center bg-[#3952D1] p-2 rounded-lg">All Bills</h2>
+                    <div className="w-full md:pr-5 md:pt-5">
+                        <h2 className="md:text-4xl text-2xl mt-3 font-bold mb-2 md:mb-4 capitalize text-white w-full text-center bg-[#3952D1] p-2 md:rounded-lg">All Bills</h2>
                         <div className="flex flex-wrap-reverse gap-5 justify-between">
-                            <div className="flex justify-center w-full gap-2 rounded-lg text-2xl items-center md:w-2/5 bg-black text-white">
+                            <div className="flex justify-center w-full gap-2 md:rounded-lg text-[18px] py-1 md:text-2xl items-center md:w-2/5 bg-black text-white">
                                 <h2>Total Revenue:  </h2>
                                 <h2 className="text-center font-bold">
                                     ₹ {totalSales}
@@ -315,19 +317,19 @@ export default function Bills() {
                             <table className="grow bg-white text-center border">
                                 <thead>
                                     <tr>
-                                        <th className="border py-2 text-black">Bill No.</th>
-                                        <th className="border py-2 text-black">Date</th>
-                                        <th className="border py-2 text-black">Time</th>
-                                        <th className="border py-2 text-black">Amount</th>
+                                        <th className="border py-2 text-[14px] md:text-[16px] text-black">Bill No.</th>
+                                        <th className="border py-2 text-[14px] md:text-[16px] text-black">Date</th>
+                                        <th className="border py-2 text-[14px] md:text-[16px] text-black">Time</th>
+                                        <th className="border py-2 text-[14px] md:text-[16px] text-black">Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {allBills.map((bill, index) => (
                                         <tr key={index} onClick={() => handleShowBillDetails(bill)} className="cursor-pointer hover:bg-cyan-100 hover:font-semibold duration-100 ease-in">
-                                            <td className={`border px-4 py-2 ${bill.cancelled ? 'text-red-500 bg-gray-200' : ''}`}>{bill.billNo}</td>
-                                            <td className={`border px-4 py-2 ${bill.cancelled ? 'text-red-500 bg-gray-200' : ''}`}>{bill.date}</td>
-                                            <td className={`border px-4 py-2 ${bill.cancelled ? 'text-red-500 bg-gray-200' : ''}`}>{bill.time}</td>
-                                            <td className={`border px-4 py-2 ${bill.cancelled ? 'text-red-500 bg-gray-200' : ''}`}>₹ {bill.totalAmount.toFixed(2)}</td>
+                                            <td className={`border px-4 text-[14px] md:text-[16px] py-2 ${bill.cancelled ? 'text-red-500 bg-gray-200' : ''}`}>{bill.billNo}</td>
+                                            <td className={`border px-4 text-[14px] md:text-[16px] py-2 ${bill.cancelled ? 'text-red-500 bg-gray-200' : ''}`}>{bill.date}</td>
+                                            <td className={`border px-4 text-[14px] md:text-[16px] py-2 ${bill.cancelled ? 'text-red-500 bg-gray-200' : ''}`}>{bill.time}</td>
+                                            <td className={`border px-4 text-[14px] md:text-[16px] py-2 ${bill.cancelled ? 'text-red-500 bg-gray-200' : ''}`}>₹{bill.totalAmount}</td>
                                         </tr>
                                     ))}
                                 </tbody>
