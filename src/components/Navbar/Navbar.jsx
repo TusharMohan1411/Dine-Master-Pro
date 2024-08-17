@@ -18,7 +18,7 @@ export default function Navbar() {
 
 
     const navClass = 'text-white flex gap-3 text-xl ease-in duration-200 ';
-    const activeNavClass = 'text-[#38bdf8] md:translate-x-2';
+    const activeNavClass = 'text-yellow-200 md:translate-x-2';
 
     return (
         <div className="h-full bg-[#F5F6FD] p-0 md:p-[20px] flex w-full md:w-auto ">
@@ -27,7 +27,7 @@ export default function Navbar() {
                     h-full p-2 md:p-5`}
             >
                 <div className="flex">
-                    <h1 className='hidden md:block text-[26px] font-bold'>
+                    <h1 className='hidden md:block text-[26px] font-bold '>
                         {"DineMaster Pro"}
                     </h1>
                     <h1 className='md:hidden flex w-full flex-col justify-center items-center text-cyan-400 text-2xl font-bold'>
