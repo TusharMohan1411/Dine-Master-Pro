@@ -7,7 +7,6 @@ const AddCategoryModal = forwardRef(function AddCategoryModal({ onClose }, ref) 
     const [newCategory, setNewCategory] = useState({});
     const { setAllProducts } = useContext(GlobalContext);
 
-
     useImperativeHandle(ref, () => ({
         open() {
             addCategoryModalRef.current.showModal();

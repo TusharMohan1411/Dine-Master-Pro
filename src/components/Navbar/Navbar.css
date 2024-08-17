@@ -1,14 +1,1 @@
-.navLinks-cont .navClass{
-    display: flex;
-    margin-top: 20px;
-    gap: 20px;
-    align-items: center;
-    font-size: 18px;
-}
-
-.navLinks-cont .active{
-    color: aqua;
-    transform: translateX(5px);
-    transition: 0.5s;
-}
 
