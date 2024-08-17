@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useContext } from "react";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import MainSection from "../../components/Main/MainSection";
@@ -11,6 +11,8 @@ import { FaPlus } from "react-icons/fa";
 export default function ProductsCategories() {
     const { allProducts } = useContext(GlobalContext);
     const [showModal, setShowModal] = useState(false);
+    const [searchedCategory, setSearchedCategory] = useState('')
+
     const addCategoryModal = useRef();
     const navigate = useNavigate();
 
@@ -28,6 +30,16 @@ export default function ProductsCategories() {
         setShowModal(false);
     }
 
+    const categoryList = useMemo(() => {
+        if (searchedCategory === '') {
+            return Object.entries(allProducts);
+        } else {
+            return Object.entries(allProducts).filter(cat =>
+                cat[0].toLowerCase().includes(searchedCategory.toLowerCase())
+            );
+        }
+    }, [searchedCategory, allProducts]);
+
     return (
         <>
             {showModal &&
@@ -40,23 +52,25 @@ export default function ProductsCategories() {
                         type="text"
                         name="search"
                         id="search"
-                        placeholder="Search Items"
+                        value={searchedCategory}
+                        placeholder="Search Category"
+                        onChange={(e) => setSearchedCategory(e.target.value)}
                         className="px-4 h-3/4 my-auto rounded-xl shadow-sm focus:outline-none duration-200 ease-in focus:shadow-md"
                     />
                 </MainHeader>
 
                 <MainData>
-                    {Object.entries(allProducts).map(([key, category]) => (
+                    {categoryList.map(([key, category]) => (
                         <div
                             key={key}
                             onClick={() => navigate(`/ProductsCategories/${key}`)}
-                            className="product-card flex flex-col cursor-pointer w-64 h-64 bg-white pb-2 
+                            className="product-card flex flex-col cursor-pointer w-64 box-border h-64 bg-white pb-2 
                                 rounded-xl drop-shadow-md transition-transform duration-300 hover:scale-105 hover:z-50"
                         >
                             <div className="product-img w-full h-52">
-                                <img src={category.image} alt={key} className="w-full h-full shadow-md object-cover rounded-t-xl" />
+                                <img src={category.image} loading="lazy" alt={key} className="w-full h-full shadow-md object-cover rounded-t-xl" />
                             </div>
-                            <div className="product-card-text flex justify-between align-middle text-center p-2">
+                            <div className="product-card-text flex justify-between align-middle text-center pt-2">
                                 <h2 className="text-xl font-semibold text-black capitalize w-full">{key}</h2>
                             </div>
                         </div>

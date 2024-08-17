@@ -1,89 +1,55 @@
-// // pizza category
-// import pizzaImage from './assets/pizza.png';
-// import paneerPizzaImage from './assets/paneerPizza.png';
-// import chickenPizzaImage from './assets/chickenPizza.png';
-// import margheritaPizzaImage from './assets/margheritaPizza.png';
-// import veggiePizzaImage from './assets/veggiePizza.png';
-// import pepperoniPizzaImage from './assets/pepperoniPizza.png';
+import pizza from '../../public/images/food images/pizza/pizza.jpeg';
+import paneerPizza from '../../public/images/food images/pizza/paneerPizza.jpeg';
+import margheritaPizza from '../../public/images/food images/pizza/margheritaPizza.jpeg';
+import veggiePizza from '../../public/images/food images/pizza/veggiePizza.jpg';
+import pepperoniPizza from '../../public/images/food images/pizza/pepperoniPizza.jpeg';
 
-// // burger category
-// import burgerImage from './assets/burger.png';
-// import vegBurgerImage from './assets/vegBurger.png';
-// import chickenBurgerImage from './assets/chickenBurger.png';
-// import cheeseBurgerImage from './assets/cheeseBurger.png';
-// import doublePattyBurgerImage from './assets/doublePattyBurger.png';
-// import fishBurgerImage from './assets/fishBurger.png';
+import burger from '../../public/images/food images/burger/burger.jpeg';
+import vegBurger from '../../public/images/food images/burger/vegBurger.jpeg';
+import cheeseBurger from '../../public/images/food images/burger/cheeseBurger.jpeg';
+import doublePattyBurger from '../../public/images/food images/burger/doublePattyBurger.jpg';
 
-// // chowmein category
-// import chowmeinImage from './assets/chowmein.png';
-// import vegChowmeinImage from './assets/vegChowmein.png';
-// import chickenChowmeinImage from './assets/chickenChowmein.png';
-// import eggChowmeinImage from './assets/eggChowmein.png';
-// import paneerChowmeinImage from './assets/paneerChowmein.png';
-// import shrimpChowmeinImage from './assets/shrimpChowmein.png';
+import chowmein from '../../public/images/food images/chowmein/chowmein.jpg';
+import vegChowmein from '../../public/images/food images/chowmein/vegChowmein.jpeg';
+import paneerChowmein from '../../public/images/food images/chowmein/paneerChowmein.jpeg';
 
-// // momos category
-// import momosImage from './assets/momos.png';
-// import vegMomosImage from './assets/vegMomos.png';
-// import chickenMomosImage from './assets/chickenMomos.png';
-// import paneerMomosImage from './assets/paneerMomos.png';
-// import friedMomosImage from './assets/friedMomos.png';
-// import chocolateMomosImage from './assets/chocolateMomos.png';
+import momos from '../../public/images/food images/momos/momos.jpg';
+import vegMomos from '../../public/images/food images/momos/vegMomos.jpeg';
+import paneerMomos from '../../public/images/food images/momos/paneerMomos.jpeg';
+import friedMomos from '../../public/images/food images/momos/friedMomos.jpeg';
 
-// // manchurian category
-// import manchurianImage from './assets/manchurian.png';
-// import vegManchurianImage from './assets/vegManchurian.png';
-// import chickenManchurianImage from './assets/chickenManchurian.png';
-// import paneerManchurianImage from './assets/paneerManchurian.png';
-// import gobiManchurianImage from './assets/gobiManchurian.png';
-// import fishManchurianImage from './assets/fishManchurian.png';
+import manchurian from '../../public/images/food images/manchurian/manchurian.jpeg';
+import vegManchurian from '../../public/images/food images/manchurian/vegManchurian.jpg';
+import paneerManchurian from '../../public/images/food images/manchurian/paneerManchurian.jpeg';
 
-// // cutlets category
-// import cutletsImage from './assets/cutlets.png';
-// import vegCutletImage from './assets/vegCutlet.png';
-// import chickenCutletImage from './assets/chickenCutlet.png';
-// import paneerCutletImage from './assets/paneerCutlet.png';
-// import fishCutletImage from './assets/fishCutlet.png';
-// import beetrootCutletImage from './assets/beetrootCutlet.png';
+import cutlets from '../../public/images/food images/cutlets/cutlets.jpeg';
+import vegCutlet from '../../public/images/food images/cutlets/vegCutlet.jpg';
+import paneerCutlet from '../../public/images/food images/cutlets/paneerCutlet.jpeg';
 
-// // patties category
-// import pattiesImage from './assets/patties.png';
-// import vegPattiesImage from './assets/vegPatties.png';
-// import chickenPattiesImage from './assets/chickenPatties.png';
-// import paneerPattiesImage from './assets/paneerPatties.png';
-// import cheesePattiesImage from './assets/cheesePatties.png';
-// import eggPattiesImage from './assets/eggPatties.png';
+import patties from '../../public/images/food images/patties/patties.jpeg';
+import vegPatties from '../../public/images/food images/patties/vegPatties.jpeg';
+import paneerPatties from '../../public/images/food images/patties/paneerPatties.jpeg';
+import cheesePatties from '../../public/images/food images/patties/cheesePatties.jpeg';
 
-// // samosa category
-// import samosaImage from './assets/samosa.png';
-// import alooSamosaImage from './assets/alooSamosa.png';
-// import paneerSamosaImage from './assets/paneerSamosa.png';
-// import keemaSamosaImage from './assets/keemaSamosa.png';
-// import vegSamosaImage from './assets/vegSamosa.png';
-// import cheeseSamosaImage from './assets/cheeseSamosa.png';
+import samosa from '../../public/images/food images/samosa/samosa.jpeg';
+import alooSamosa from '../../public/images/food images/samosa/alooSamosa.jpeg';
+import paneerSamosa from '../../public/images/food images/samosa/paneerSamosa.jpeg';
 
-// // roll category
-// import rollImage from './assets/roll.png';
-// import eggRollImage from './assets/eggRoll.png';
-// import vegRollImage from './assets/vegRoll.png';
+import roll from '../../public/images/food images/roll/roll.jpeg';
+import eggRoll from '../../public/images/food images/roll/eggRoll.jpeg';
+import vegRoll from '../../public/images/food images/roll/vegRoll.jpeg';
 
-// // miscellaneous category
-// import miscellaneousImage from './assets/miscellaneous.png';
-// import frenchFriesImage from './assets/frenchFries.png';
-// import vegSaladImage from './assets/vegSalad.png';
-// import chickenSaladImage from './assets/chickenSalad.png';
-// import nachosImage from './assets/nachos.png';
-// import springRollsImage from './assets/springRolls.png';
-
-
+import miscellaneous from '../../public/images/food images/miscellaneous/miscellaneous.png';
+import frenchFries from '../../public/images/food images/miscellaneous/frenchFries.jpg';
+import springRolls from '../../public/images/food images/miscellaneous/springRoll.jpg';
 
 const PRODUCTS = {
     pizza: {
-        image: 'https://via.placeholder.com/150/FF0000/FFFFFF?text=Pizza',
+        image: pizza,
         paneerPizza: {
             name: 'Paneer Pizza',
             price: 200,
-            image: 'https://via.placeholder.com/150/FF0000/FFFFFF?text=Paneer+Pizza',
+            image: paneerPizza,
             ingredients: ['Paneer', 'Cheese', 'Flour', 'Tomato Sauce'],
             recipe: [
                 'Prepare the dough.',
@@ -95,7 +61,7 @@ const PRODUCTS = {
         margheritaPizza: {
             name: 'Margherita Pizza',
             price: 180,
-            image: 'https://via.placeholder.com/150/FF0000/FFFFFF?text=Margherita+Pizza',
+            image: margheritaPizza,
             ingredients: ['Cheese', 'Tomato', 'Flour'],
             recipe: [
                 'Prepare the dough.',
@@ -107,7 +73,7 @@ const PRODUCTS = {
         veggiePizza: {
             name: 'Veggie Pizza',
             price: 220,
-            image: 'https://via.placeholder.com/150/FF0000/FFFFFF?text=Veggie+Pizza',
+            image: veggiePizza,
             ingredients: ['Cheese', 'Veggies', 'Flour', 'Tomato Sauce'],
             recipe: [
                 'Prepare the dough.',
@@ -119,7 +85,7 @@ const PRODUCTS = {
         pepperoniPizza: {
             name: 'Pepperoni Pizza',
             price: 260,
-            image: 'https://via.placeholder.com/150/FF0000/FFFFFF?text=Pepperoni+Pizza',
+            image: pepperoniPizza,
             ingredients: ['Pepperoni', 'Cheese', 'Flour', 'Tomato Sauce'],
             recipe: [
                 'Prepare the dough.',
@@ -129,11 +95,11 @@ const PRODUCTS = {
         }
     },
     burger: {
-        image: 'https://via.placeholder.com/150/00FF00/FFFFFF?text=Burger',
+        image: burger,
         vegBurger: {
             name: 'Veg Burger',
             price: 100,
-            image: 'https://via.placeholder.com/150/00FF00/FFFFFF?text=Veg+Burger',
+            image: vegBurger,
             ingredients: ['Bun', 'Veg Patty', 'Lettuce', 'Tomato'],
             recipe: [
                 'Grill the veg patty.',
@@ -144,7 +110,7 @@ const PRODUCTS = {
         cheeseBurger: {
             name: 'Cheese Burger',
             price: 120,
-            image: 'https://via.placeholder.com/150/00FF00/FFFFFF?text=Cheese+Burger',
+            image: cheeseBurger,
             ingredients: ['Bun', 'Cheese', 'Patty', 'Lettuce'],
             recipe: [
                 'Grill the patty.',
@@ -155,7 +121,7 @@ const PRODUCTS = {
         doublePattyBurger: {
             name: 'Double Patty Burger',
             price: 180,
-            image: 'https://via.placeholder.com/150/00FF00/FFFFFF?text=Double+Patty+Burger',
+            image: doublePattyBurger,
             ingredients: ['Bun', 'Double Patty', 'Cheese', 'Lettuce'],
             recipe: [
                 'Grill the patties.',
@@ -165,11 +131,11 @@ const PRODUCTS = {
         }
     },
     chowmein: {
-        image: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Chowmein',
+        image: chowmein,
         vegChowmein: {
             name: 'Veg Chowmein',
             price: 80,
-            image: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Veg+Chowmein',
+            image: vegChowmein,
             ingredients: ['Noodles', 'Veggies', 'Soy Sauce'],
             recipe: [
                 'Boil the noodles.',
@@ -180,7 +146,7 @@ const PRODUCTS = {
         paneerChowmein: {
             name: 'Paneer Chowmein',
             price: 110,
-            image: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Paneer+Chowmein',
+            image: paneerChowmein,
             ingredients: ['Noodles', 'Paneer', 'Veggies', 'Soy Sauce'],
             recipe: [
                 'Boil the noodles.',
@@ -190,11 +156,11 @@ const PRODUCTS = {
         },
     },
     momos: {
-        image: 'https://via.placeholder.com/150/FFFF00/FFFFFF?text=Momos',
+        image: momos,
         vegMomos: {
             name: 'Veg Momos',
             price: 60,
-            image: 'https://via.placeholder.com/150/FFFF00/FFFFFF?text=Veg+Momos',
+            image: vegMomos,
             ingredients: ['Flour', 'Vegetables', 'Oil'],
             recipe: [
                 'Prepare the dough.',
@@ -205,7 +171,7 @@ const PRODUCTS = {
         paneerMomos: {
             name: 'Paneer Momos',
             price: 70,
-            image: 'https://via.placeholder.com/150/FFFF00/FFFFFF?text=Paneer+Momos',
+            image: paneerMomos,
             ingredients: ['Flour', 'Paneer', 'Oil'],
             recipe: [
                 'Prepare the dough.',
@@ -216,7 +182,7 @@ const PRODUCTS = {
         friedMomos: {
             name: 'Fried Momos',
             price: 90,
-            image: 'https://via.placeholder.com/150/FFFF00/FFFFFF?text=Fried+Momos',
+            image: friedMomos,
             ingredients: ['Flour', 'Vegetables', 'Oil'],
             recipe: [
                 'Prepare the dough.',
@@ -226,11 +192,11 @@ const PRODUCTS = {
         },
     },
     manchurian: {
-        image: 'https://via.placeholder.com/150/FF00FF/FFFFFF?text=Manchurian',
+        image: manchurian,
         vegManchurian: {
             name: 'Veg Manchurian',
             price: 90,
-            image: 'https://via.placeholder.com/150/FF00FF/FFFFFF?text=Veg+Manchurian',
+            image: vegManchurian,
             ingredients: ['Vegetables', 'Soy Sauce', 'Cornflour'],
             recipe: [
                 'Mix vegetables and form balls.',
@@ -241,7 +207,7 @@ const PRODUCTS = {
         paneerManchurian: {
             name: 'Paneer Manchurian',
             price: 110,
-            image: 'https://via.placeholder.com/150/FF00FF/FFFFFF?text=Paneer+Manchurian',
+            image: paneerManchurian,
             ingredients: ['Paneer', 'Soy Sauce', 'Cornflour'],
             recipe: [
                 'Mix paneer and form balls.',
@@ -251,11 +217,11 @@ const PRODUCTS = {
         },
     },
     cutlets: {
-        image: 'https://via.placeholder.com/150/00FFFF/FFFFFF?text=Cutlets',
+        image: cutlets,
         vegCutlet: {
             name: 'Veg Cutlet',
             price: 70,
-            image: 'https://via.placeholder.com/150/00FFFF/FFFFFF?text=Veg+Cutlet',
+            image: vegCutlet,
             ingredients: ['Potatoes', 'Vegetables', 'Breadcrumbs'],
             recipe: [
                 'Mix vegetables and form patties.',
@@ -266,7 +232,7 @@ const PRODUCTS = {
         paneerCutlet: {
             name: 'Paneer Cutlet',
             price: 90,
-            image: 'https://via.placeholder.com/150/00FFFF/FFFFFF?text=Paneer+Cutlet',
+            image: paneerCutlet,
             ingredients: ['Paneer', 'Breadcrumbs', 'Spices'],
             recipe: [
                 'Mix paneer and form patties.',
@@ -276,223 +242,116 @@ const PRODUCTS = {
         },
     },
     patties: {
-        image: 'https://via.placeholder.com/150/FFA500/FFFFFF?text=Patties',
+        image: patties,
         vegPatties: {
             name: 'Veg Patties',
-            price: 50,
-            image: 'https://via.placeholder.com/150/FFA500/FFFFFF?text=Veg+Patties',
+            price: 40,
+            image: vegPatties,
             ingredients: ['Flour', 'Vegetables', 'Spices'],
             recipe: [
                 'Prepare the dough.',
                 'Add vegetable filling.',
-                'Bake until golden.'
+                'Bake until golden brown.'
             ]
         },
         paneerPatties: {
             name: 'Paneer Patties',
-            price: 70,
-            image: 'https://via.placeholder.com/150/FFA500/FFFFFF?text=Paneer+Patties',
+            price: 50,
+            image: paneerPatties,
             ingredients: ['Flour', 'Paneer', 'Spices'],
             recipe: [
                 'Prepare the dough.',
                 'Add paneer filling.',
-                'Bake until golden.'
+                'Bake until golden brown.'
             ]
         },
         cheesePatties: {
             name: 'Cheese Patties',
-            price: 90,
-            image: 'https://via.placeholder.com/150/FFA500/FFFFFF?text=Cheese+Patties',
+            price: 60,
+            image: cheesePatties,
             ingredients: ['Flour', 'Cheese', 'Spices'],
             recipe: [
                 'Prepare the dough.',
                 'Add cheese filling.',
-                'Bake until golden.'
+                'Bake until golden brown.'
             ]
-        },
+        }
     },
     samosa: {
-        image: 'https://via.placeholder.com/150/800080/FFFFFF?text=Samosa',
+        image: samosa,
         alooSamosa: {
             name: 'Aloo Samosa',
             price: 20,
-            image: 'https://via.placeholder.com/150/800080/FFFFFF?text=Aloo+Samosa',
-            ingredients: ['Flour', 'Potatoes', 'Spices'],
+            image: alooSamosa,
+            ingredients: ['Flour', 'Potato', 'Spices'],
             recipe: [
                 'Prepare the dough.',
                 'Add potato filling.',
-                'Fry until golden.'
+                'Fry until golden brown.'
             ]
         },
         paneerSamosa: {
             name: 'Paneer Samosa',
-            price: 30,
-            image: 'https://via.placeholder.com/150/800080/FFFFFF?text=Paneer+Samosa',
+            price: 25,
+            image: paneerSamosa,
             ingredients: ['Flour', 'Paneer', 'Spices'],
             recipe: [
                 'Prepare the dough.',
                 'Add paneer filling.',
-                'Fry until golden.'
+                'Fry until golden brown.'
             ]
-        }
+        },
     },
     roll: {
-        image: 'https://via.placeholder.com/150/FFC0CB/FFFFFF?text=Rolls',
+        image: roll,
         eggRoll: {
             name: 'Egg Roll',
             price: 50,
-            image: 'https://via.placeholder.com/150/FFC0CB/FFFFFF?text=Egg+Roll',
-            ingredients: ['Flour', 'Egg', 'Vegetables'],
+            image: eggRoll,
+            ingredients: ['Flour', 'Eggs', 'Spices'],
             recipe: [
                 'Prepare the dough.',
-                'Cook egg and wrap with dough.',
-                'Add vegetables and roll.'
+                'Cook the eggs.',
+                'Wrap in the dough and cook again.'
             ]
         },
         vegRoll: {
             name: 'Veg Roll',
-            price: 50,
-            image: 'https://via.placeholder.com/150/FFC0CB/FFFFFF?text=veg+Roll',
-            ingredients: ['Flour', 'Vegetables'],
+            price: 40,
+            image: vegRoll,
+            ingredients: ['Flour', 'Vegetables', 'Spices'],
             recipe: [
                 'Prepare the dough.',
-                'Cook egg and wrap with dough.',
-                'Add vegetables and roll.'
+                'Add vegetable filling.',
+                'Wrap in the dough and cook again.'
             ]
         },
     },
     miscellaneous: {
-        image: 'https://via.placeholder.com/150/000000/FFFFFF?text=Miscellaneous',
+        image: miscellaneous,
         frenchFries: {
             name: 'French Fries',
-            price: 60,
-            image: 'https://via.placeholder.com/150/000000/FFFFFF?text=French+Fries',
+            price: 30,
+            image: frenchFries,
             ingredients: ['Potatoes', 'Salt', 'Oil'],
             recipe: [
                 'Cut potatoes into strips.',
-                'Fry in oil until golden.',
-                'Sprinkle salt and serve.'
+                'Fry until golden brown.',
+                'Sprinkle salt.'
             ]
         },
         springRolls: {
             name: 'Spring Rolls',
-            price: 90,
-            image: 'https://via.placeholder.com/150/000000/FFFFFF?text=Spring+Rolls',
-            ingredients: ['Spring Roll Wrappers', 'Vegetables', 'Soy Sauce'],
+            price: 60,
+            image: springRolls,
+            ingredients: ['Flour', 'Vegetables', 'Spices'],
             recipe: [
-                'Fill wrappers with vegetables.',
-                'Roll tightly.',
-                'Fry until golden and serve with soy sauce.'
+                'Prepare the dough.',
+                'Add vegetable filling.',
+                'Fry until golden brown.'
             ]
         }
     }
-
-}
-
-
-
-
-// const PRODUCTS = {
-//     pizza: {
-//         image: Pizza, 
-//         paneerPizza: {
-//             name: 'Paneer Pizza',
-//             price: 200,
-//             image: Pizza,
-//             ingredients: ['Paneer', 'Cheese', 'Flour', 'Tomato Sauce'],
-//             recipe: [
-//                 'Prepare the dough.',
-//                 'Spread tomato sauce.',
-//                 'Add cheese and paneer.',
-//                 'Bake in oven.'
-//             ]
-//         },
-//         chickenPizza: {
-//             name: 'Chicken Pizza',
-//             price: 250,
-//             image: Pizza,
-//             ingredients: ['Chicken', 'Cheese', 'Flour', 'Tomato Sauce'],
-//             recipe: [
-//                 'Prepare the dough.',
-//                 'Spread tomato sauce.',
-//                 'Add cheese and chicken.',
-//                 'Bake in oven.'
-//             ]
-//         }
-//     },
-//     burger: {
-//         image: Burger, 
-//         vegBurger: {
-//             name: 'Veg Burger',
-//             price: 100,
-//             image: Burger,
-//             ingredients: ['Bun', 'Veg Patty', 'Lettuce', 'Tomato'],
-//             recipe: [
-//                 'Grill the veg patty.',
-//                 'Toast the buns.',
-//                 'Assemble with lettuce and tomato.'
-//             ]
-//         },
-//         chickenBurger: {
-//             name: 'Chicken Burger',
-//             price: 150,
-//             image: 'chickenBurger.png',
-//             ingredients: ['Bun', 'Chicken Patty', 'Lettuce', 'Tomato'],
-//             recipe: [
-//                 'Grill the chicken patty.',
-//                 'Toast the buns.',
-//                 'Assemble with lettuce and tomato.'
-//             ]
-//         }
-//     },
-//     miscellaneous: {
-//         image: SpringRoll, 
-//         springRoll: {
-//             name: 'Spring Roll',
-//             price: 60,
-//             image: SpringRoll,
-//             ingredients: ['Flour', 'Vegetables', 'Oil', 'Flour', 'Vegetables', 'Oil', 'Flour', 'Vegetables', 'Oil', 'Flour', 'Vegetables', 'Oil', 'Flour', 'Vegetables', 'Oil',],
-//             recipe: [
-//                 'Prepare the dough.',
-//                 'Add vegetable filling.',
-//                 'Deep fry until golden.',
-//                 'Prepare the dough.',
-//                 'Add vegetable filling.',
-//                 'Deep fry until golden. Deep fry until goldenDeep fry until goldenDeep fry until goldenDeep fry until goldenDeep fry until goldenDeep fry until goldenDeep fry until goldenDeep fry until goldenDeep fry until golden',
-//                 'Prepare the dough.',
-//                 'Add vegetable filling.',
-//                 'Deep fry until golden.',
-//                 'Prepare the dough.',
-//                 'Add vegetable filling.',
-//                 'Deep fry until golden.',
-//                 'Prepare the dough.',
-//                 'Add vegetable filling.',
-//                 'Deep fry until golden.',
-//                 'Prepare the dough.',
-//                 'Add vegetable filling.',
-//                 'Deep fry until golden.',
-//             ]
-//         },
-//         frenchFries: {
-//             name: 'French Fries',
-//             price: 50,
-//             image: FrenchFries,
-//             ingredients: ['Potatoes', 'Salt', 'Oil'],
-//             recipe: [
-//                 'Cut potatoes into strips.',
-//                 'Deep fry until golden.',
-//                 'Sprinkle with salt.'
-//             ]
-//         }
-//     }
-// };
-
+};
 
 export default PRODUCTS;
-
-
-
-
-
-
-

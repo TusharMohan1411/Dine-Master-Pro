@@ -17,8 +17,6 @@ const AddProductModal = forwardRef(function AddProductModal({ onClose }, ref) {
     const [recipeStep, setRecipeStep] = useState('');
     const { categoryName } = useParams();
 
-
-
     useImperativeHandle(ref, () => ({
         open() {
             AddProductModalRef.current.showModal();

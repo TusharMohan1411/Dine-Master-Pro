@@ -8,22 +8,50 @@ import MainData from "../../components/Main/MainData";
 export default function ProductDetails() {
 
     const { categoryName, productName } = useParams();
-    const { allProducts } = useContext(GlobalContext);
+    const { allProducts, setAllProducts } = useContext(GlobalContext);
     const navigate = useNavigate();
 
     const currentProduct = allProducts[categoryName][productName];
 
+    function handleDeleteProduct() {
+        const { image, ...remainingProducts } = allProducts[categoryName]
+
+        const updatedProducts = Object.entries(remainingProducts)
+            .filter(([key, product]) => product.name !== currentProduct.name)
+            .reduce((acc, [key, product]) => {
+                acc[key] = product;
+                return acc
+            }, {})
+
+        console.log(updatedProducts);
+
+        setAllProducts(prevState => ({
+            ...prevState,
+            [categoryName]: {
+                image,
+                ...updatedProducts
+            }
+        }));
+
+        navigate(`/ProductsCategories/${categoryName}`)
+    }
+
     return (
         <MainSection>
             <MainHeader PageHeading={'Product Details'}>
-                <div className="flex h-full w-fit items-center">
-                    <h1 onClick={() => navigate(`/ProductsCategories/${categoryName}`)}
-                        className="hover:font-semibold ease-in duration-75 text-xl cursor-pointer capitalize"
+                <div className="flex h-full w-fit items-center text-gray-500">
+
+                    <h1 onClick={() => navigate(`/ProductsCategories`)}
+                        className="hover:font-semibold ease-in duration-100 text-[18px] cursor-pointer capitalize"
                     >
-                        {categoryName}
+                        {`All Categories >`}
                     </h1>
-                    <span>{'>'}</span>
-                    <span className="hover:font-semibold ease-in duration-75 text-xl cursor-pointer capitalize"> {currentProduct.name}</span>
+                    <h1 onClick={() => navigate(`/ProductsCategories/${categoryName}`)}
+                        className="hover:font-semibold ease-in duration-100 text-[18px]  cursor-pointer capitalize"
+                    >
+                        {`> ${categoryName} >`}
+                    </h1>
+                    <span className="duration-75 text-[18px]  capitalize">{`> ${currentProduct.name}`}</span>
                 </div>
             </MainHeader>
 
@@ -37,6 +65,10 @@ export default function ProductDetails() {
                             </div>
                             <h1 className="text-[42px] font-bold mt-6 mb-1 capitalize text-gray-800">{currentProduct.name}</h1>
                             <h2 className="text-3xl font-semibold text-gray-600 mb-4">₹ {currentProduct.price}</h2>
+                            <div className="flex w-full gap-2 justify-between ">
+                                <button type="button" className="px-4 py-2 w-full bg-gray-500 text-white rounded">Edit</button>
+                                <button type="button" onClick={handleDeleteProduct} className="px-4 py-2 w-full bg-gray-500 text-white rounded">Delete Product</button>
+                            </div>
                         </div>
 
                         <div className="flex flex-col w-3/5 ml-5 overflow-y-scroll scrollable-element">

@@ -43,14 +43,14 @@ export default function ProductTypes() {
             }
             <MainSection>
                 <MainHeader PageHeading={categoryName}>
-                    <input
-                        // onChange={(event) => setSearchedItem(event.target.value)}
-                        type="text"
-                        name="search"
-                        id="search"
-                        placeholder="Search Items"
-                        className="px-4 h-3/4 my-auto rounded-xl shadow-sm focus:outline-none duration-200 ease-in focus:shadow-md"
-                    />
+                    <div className="flex h-full w-fit items-center">
+                        <h1 onClick={() => navigate(`/ProductsCategories`)}
+                            className="hover:font-semibold ease-in text-gray-500 duration-100 text-[18px]  cursor-pointer capitalize"
+                        >
+                            {`All Categories >`}
+                        </h1>
+                        <span className="duration-75 text-[18px]  text-gray-500 capitalize">{`> ${categoryName}`}</span>
+                    </div>
                 </MainHeader>
 
                 <MainData>
