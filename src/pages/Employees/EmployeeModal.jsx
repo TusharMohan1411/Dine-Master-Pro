@@ -20,19 +20,18 @@ const EmployeeModal = forwardRef(function EmployeeModal({ EmployeeDetails, onClo
     return createPortal(
         <dialog
             ref={dialogEmployee}
-            className="empModal fixed flex gap-6 w-2/5 p-4 mx-auto justify-between
-             bg-white bg-opacity-80 my-auto text-left backdrop:bg-black backdrop:bg-opacity-60 backdrop-blur-md rounded-2xl"
+            className="modal-class gap-4 lg:gap-6 flex-col lg:flex-row w-full justify-between md:w-[40%]"
             onClose={onClose}
         >
-            <div className="empImgCard w-72 h-96">
-                <img src={EmployeeDetails.image} alt={EmployeeDetails.name} className='w-full h-full object-cover rounded-md shadow-xl' />
+            <div className="empImgCard md:w-72 w-64 h-72 md:h-96">
+                <img src={EmployeeDetails.image} alt={EmployeeDetails.name} className='w-full h-full object-cover object-top rounded-md shadow-xl' />
             </div>
 
-            <div className="flex gap-4 flex-col justify-between flex-1">
-                <div className="flex-1">
+            <div className="flex gap-4 flex-col justify-center h-96 flex-1">
+                <div className="grow h-full">
                     <h1 className='text-black text-3xl font-bold mt-2'>{EmployeeDetails.name}</h1>
                     <h2 className="text-xl text-gray-700 mb-2">{EmployeeDetails.role}</h2>
-                    <hr className="w-4/5 border-black" />
+                    <hr className="w-full border-black" />
                     <p className="mt-3 text-[18px]"><strong>Employee Id : </strong>{EmployeeDetails.id}</p>
                     <p className="text-[18px]"><strong>Salary : </strong> ₹{EmployeeDetails.salary}</p>
                     <p className=" text-[18px]"><strong> Joining Date : </strong>{EmployeeDetails.joiningDate}</p>

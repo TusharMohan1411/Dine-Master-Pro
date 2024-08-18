@@ -44,77 +44,105 @@ export default function EditEmployeeDetails() {
     return (
         <>
             <MainSection>
-                <MainHeader PageHeading={'Edit Employee Details'}>
+                <MainHeader PageHeading={'Edit Employee'}>
                     <div className="flex h-full w-fit items-center">
                         <h1 onClick={() => navigate('/employees')} className="hover:font-semibold hover:scale-105 ease-in duration-75 text-xl cursor-pointer">{'<'}Go Back</h1>
                     </div>
                 </MainHeader>
                 <MainData>
-                    <div className="w-4/5 mx-auto p-8 mt-3 bg-white shadow-md rounded-lg">
+                    <div className="w-full md:w-4/5 mx-auto p-3 lg:p-8 mt-3 bg-white shadow-md rounded-lg">
                         <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
-                            <input
-                                type="text"
-                                name="id"
-                                placeholder="Id"
-                                defaultValue={currentEmpForEdit.id}
-                                ref={idRef}
-                                required
-                                readOnly
-                                className="px-4 py-2 border bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                            />
-                            <input
-                                type="text"
-                                name="name"
-                                placeholder="Name"
-                                defaultValue={currentEmpForEdit.name}
-                                ref={nameRef}
-                                required
-                                className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                            />
-                            <input
-                                type="text"
-                                name="role"
-                                placeholder="Role"
-                                defaultValue={currentEmpForEdit.role}
-                                ref={roleRef}
-                                required
-                                className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                            />
-                            <input
-                                type="number"
-                                name="salary"
-                                placeholder="Salary"
-                                defaultValue={currentEmpForEdit.salary}
-                                ref={salaryRef}
-                                required
-                                min={1}
-                                className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                            />
-                            <input
-                                type="text"
-                                name="image"
-                                defaultValue={currentEmpForEdit.image}
-                                ref={imageRef}
-                                placeholder="Image URL"
-                                className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                            />
-                            <input
-                                type="text"
-                                name="joiningDate"
-                                placeholder="Joining Date"
-                                defaultValue={currentEmpForEdit.joiningDate}
-                                ref={joiningDateRef}
-                                className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                            />
-                            <input
-                                type="text"
-                                name="address"
-                                placeholder="Address"
-                                defaultValue={currentEmpForEdit.address}
-                                ref={addressRef}
-                                required
-                                className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                            />
+                            <div>
+                                <label htmlFor="employeeId" className="modal-input-label">Employee Id</label>
+                                <input
+                                    type="text"
+                                    name="id"
+                                    id="employeeId"
+                                    placeholder="Id"
+                                    defaultValue={currentEmpForEdit.id}
+                                    ref={idRef}
+                                    required
+                                    readOnly
+                                    className="px-4 py-2 w-full border bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="name" className="modal-input-label">Name</label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    placeholder="Name"
+                                    defaultValue={currentEmpForEdit.name}
+                                    ref={nameRef}
+                                    required
+                                    className="px-4 py-2 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="role" className="modal-input-label">Role</label>
+                                <input
+                                    type="text"
+                                    name="role"
+                                    id="role"
+                                    placeholder="Role"
+                                    defaultValue={currentEmpForEdit.role}
+                                    ref={roleRef}
+                                    required
+                                    className="px-4 py-2 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="salary" className="modal-input-label">Salary</label>
+                                <input
+                                    type="number"
+                                    name="salary"
+                                    id="salary"
+                                    placeholder="Salary"
+                                    defaultValue={currentEmpForEdit.salary}
+                                    ref={salaryRef}
+                                    required
+                                    min={1}
+                                    className="px-4 py-2 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="image" className="modal-input-label">Image Link</label>
+                                <input
+                                    type="text"
+                                    name="image"
+                                    id="image"
+                                    defaultValue={currentEmpForEdit.image}
+                                    ref={imageRef}
+                                    placeholder="Image URL"
+                                    className="px-4 py-2 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="joiningDate" className="modal-input-label">Joining Date</label>
+                                <input
+                                    type="text"
+                                    name="joiningDate"
+                                    id="joiningDate"
+                                    placeholder="Joining Date"
+                                    defaultValue={currentEmpForEdit.joiningDate}
+                                    ref={joiningDateRef}
+                                    className="px-4 py-2 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="address" className="modal-input-label">Address</label>
+                                <input
+                                    type="text"
+                                    name="address"
+                                    id="address"
+                                    placeholder="Address"
+                                    defaultValue={currentEmpForEdit.address}
+                                    ref={addressRef}
+                                    required
+                                    className="px-4 py-2 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                />
+                            </div>
                             <button
                                 type="submit"
                                 className="w-full py-3 mt-6 font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
