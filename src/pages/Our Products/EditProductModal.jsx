@@ -74,7 +74,7 @@ const EditProduct = forwardRef(function EditProduct({ onClose, currentProductToE
                     />
                 </div>
                 <div>
-                    <label htmlFor="Price" className="modal-input-label">Price</label>
+                    <label htmlFor="Price" className="modal-input-label">Price ₹</label>
                     <input
                         type="number"
                         placeholder="Price"

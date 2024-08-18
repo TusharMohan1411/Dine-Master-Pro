@@ -67,7 +67,7 @@ export default function ProductTypes() {
                                 </div>
                                 <div className="flex justify-between items-center p-2">
                                     <h1 className="text-xl font-semibold">{value.name}</h1>
-                                    <p className="text-md text-gray-600">{value.price}</p>
+                                    <p className="text-md text-gray-600">₹ {value.price}</p>
                                 </div>
                             </div>
                         ))

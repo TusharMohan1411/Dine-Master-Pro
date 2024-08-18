@@ -63,52 +63,67 @@ const AddProductModal = forwardRef(function AddProductModal({ onClose }, ref) {
     }
 
     return createPortal(
-        <dialog ref={AddProductModalRef} onClose={onClose} className="fixed flex flex-col w-3/5 p-4 mx-auto items-center justify-center
-             bg-white bg-opacity-80 my-auto backdrop:bg-black backdrop:bg-opacity-60 backdrop-blur-md rounded-2xl ">
+        <dialog ref={AddProductModalRef} onClose={onClose}
+            className="modal-class w-full md:w-[50%] ">
             <h1 className="text-xl font-bold mb-4">Add Product</h1>
-            <form onSubmit={handleAddNewProduct} className="flex flex-col gap-4">
-                <input
-                    type="text"
-                    placeholder="Product Name"
-                    name="name"
-                    value={newProduct.name}
-                    className="p-2 rounded border"
-                    onChange={handleChange}
-                    required
-                />
-                <input
-                    type="number"
-                    name="price"
-                    id="price"
-                    placeholder="Price"
-                    value={newProduct.price}
-                    className="p-2 rounded border"
-                    onChange={handleChange}
-                    required
-                />
-                <input
-                    type="text"
-                    placeholder="Image Link"
-                    name="image"
-                    value={newProduct.image}
-                    className="p-2 rounded border"
-                    onChange={handleChange}
-                />
+            <form onSubmit={handleAddNewProduct} className="flex w-full md:w-4/5 flex-col gap-3">
                 <div>
+                    <label htmlFor="name" className="modal-input-label">Name</label>
                     <input
                         type="text"
-                        placeholder="Ingredient"
-                        value={ingredient}
-                        className="p-2 rounded border"
-                        onChange={(e) => setIngredient(e.target.value)}
+                        placeholder="Product Name"
+                        name="name"
+                        id="name"
+                        value={newProduct.name}
+                        className="p-2 w-full rounded border"
+                        onChange={handleChange}
+                        required
                     />
-                    <button
-                        type="button"
-                        className="px-2 py-1 bg-green-500 text-white rounded ml-2"
-                        onClick={handleAddIngredient}
-                    >
-                        Add Ingredient
-                    </button>
+                </div>
+                <div>
+                    <label htmlFor="price" className="modal-input-label">Price</label>
+                    <input
+                        type="number"
+                        name="price"
+                        id="price"
+                        placeholder="Price"
+                        value={newProduct.price}
+                        className="p-2 w-full rounded border"
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div>
+                    <label htmlFor="image" className="modal-input-label">Image</label>
+                    <input
+                        type="text"
+                        placeholder="Image Link"
+                        name="image"
+                        id="image"
+                        value={newProduct.image}
+                        className="p-2 w-full rounded border"
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="Ingredient" className="modal-input-label">Add Ingredients</label>
+                    <div className="w-full flex gap-2">
+                        <input
+                            type="text"
+                            id="Ingredient"
+                            placeholder="Ingredient"
+                            value={ingredient}
+                            className="p-2 grow rounded border"
+                            onChange={(e) => setIngredient(e.target.value)}
+                        />
+                        <button
+                            type="button"
+                            className="px-4 py-1 bg-green-500 text-white rounded ml-2"
+                            onClick={handleAddIngredient}
+                        >
+                            +
+                        </button>
+                    </div>
                     <ul>
                         {newProduct.ingredients.map((ing, index) => (
                             <li key={index}>{index + 1}. {ing}</li>
@@ -116,30 +131,34 @@ const AddProductModal = forwardRef(function AddProductModal({ onClose }, ref) {
                     </ul>
                 </div>
                 <div>
-                    <input
-                        type="text"
-                        placeholder="Recipe Step"
-                        value={recipeStep}
-                        className="p-2 rounded border"
-                        onChange={(e) => setRecipeStep(e.target.value)}
-                    />
-                    <button
-                        type="button"
-                        className="px-2 py-1 bg-green-500 text-white rounded ml-2"
-                        onClick={handleAddRecipeStep}
-                    >
-                        Add Recipe Step
-                    </button>
+                    <label htmlFor="recipe" className="modal-input-label">Add Recipe Step</label>
+                    <div className="w-full flex gap-2">
+                        <input
+                            id="recipe"
+                            type="text"
+                            placeholder="Recipe Step"
+                            value={recipeStep}
+                            className="p-2 rounded border grow"
+                            onChange={(e) => setRecipeStep(e.target.value)}
+                        />
+                        <button
+                            type="button"
+                            className="px-4 py-1 bg-green-500 text-white rounded ml-2"
+                            onClick={handleAddRecipeStep}
+                        >
+                            +
+                        </button>
+                    </div>
                     <ul>
                         {newProduct.recipe.map((step, index) => (
                             <li key={index}>{index + 1}. {step}</li>
                         ))}
                     </ul>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex justify-center mt-2 gap-2">
                     <button
                         type="submit"
-                        className="px-4 py-2 bg-blue-500 text-white rounded"
+                        className="px-4 py-2 bg-black text-white rounded"
                     >
                         Add
                     </button>
