@@ -55,7 +55,7 @@ export default function ProductsCategories() {
                         value={searchedCategory}
                         placeholder="Search Category"
                         onChange={(e) => setSearchedCategory(e.target.value)}
-                        className="px-4 py-2 w-fit md:w-auto rounded-xl shadow-sm focus:outline-none duration-200 ease-in focus:shadow-md "
+                        className="px-4 py-2 w-44 md:w-auto rounded-xl shadow-sm focus:outline-none duration-200 ease-in focus:shadow-md "
                     />
                 </MainHeader>
 
