@@ -11,7 +11,7 @@ import { FaPlus } from "react-icons/fa";
 export default function ProductsCategories() {
     const { allProducts } = useContext(GlobalContext);
     const [showModal, setShowModal] = useState(false);
-    const [searchedCategory, setSearchedCategory] = useState('')
+    const [searchedCategory, setSearchedCategory] = useState('');
 
     const addCategoryModal = useRef();
     const navigate = useNavigate();
@@ -24,7 +24,7 @@ export default function ProductsCategories() {
         if (showModal) {
             addCategoryModal.current.open();
         }
-    }, [showModal])
+    }, [showModal]);
 
     function handleClose() {
         setShowModal(false);
@@ -55,38 +55,41 @@ export default function ProductsCategories() {
                         value={searchedCategory}
                         placeholder="Search Category"
                         onChange={(e) => setSearchedCategory(e.target.value)}
-                        className="px-4 h-3/4 my-auto rounded-xl shadow-sm focus:outline-none duration-200 ease-in focus:shadow-md"
+                        className="px-4 py-2 rounded-xl shadow-sm focus:outline-none duration-200 ease-in focus:shadow-md "
                     />
                 </MainHeader>
 
-                <MainData>
+                <MainData className="flex flex-wrap justify-center gap-6">
                     {categoryList.map(([key, category]) => (
                         <div
                             key={key}
                             onClick={() => navigate(`/ProductsCategories/${key}`)}
-                            className="product-card flex flex-col cursor-pointer w-64 box-border h-64 bg-white pb-2 
-                                rounded-xl drop-shadow-md transition-transform duration-300 hover:scale-105 hover:z-50"
+                            className="product-card flex flex-col items-center justify-center cursor-pointer w-[45%] md:w-[23%] h-40 md:h-64 bg-white 
+                                rounded-2xl shadow-md transition-transform duration-300 hover:scale-105 hover:z-50 hover:shadow-xl"
                         >
-                            <div className="product-img w-full h-52">
-                                <img src={category.image} loading="lazy" alt={key} className="w-full h-full shadow-md object-cover rounded-t-xl" />
+                            <div className="product-img w-full h-4/5 md:h-4/5 overflow-hidden rounded-t-2xl">
+                                <img
+                                    src={category.image}
+                                    alt={key}
+                                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-110 rounded-t-2xl"
+                                />
                             </div>
-                            <div className="product-card-text flex justify-between align-middle text-center pt-2">
-                                <h2 className="text-xl font-semibold text-black capitalize w-full">{key}</h2>
+                            <div className="product-card-text flex justify-center items-center py-1 md:py-2">
+                                <h2 className="text-sm md:text-xl font-bold text-gray-800 capitalize tracking-wide">{key}</h2>
                             </div>
                         </div>
                     ))}
                     <div
                         onClick={openAddCategoryModal}
-                        className="flex items-center justify-center cursor-pointer w-64 h-64 bg-white rounded-lg p-4 shadow-lg hover:shadow-xl transition-transform duration-300 hover:scale-105"
+                        className="flex items-center justify-center cursor-pointer w-full md:w-[23%] h-32 md:h-64 bg-white rounded-2xl p-4 shadow-lg hover:shadow-xl transition-transform duration-300 hover:scale-105"
                     >
-                        <div className="flex flex-col items-center justify-center text-blue-900 border-[3px] border-blue-800 rounded-lg h-full w-full text-4xl">
+                        <div className="flex flex-col items-center justify-center text-blue-900 border-[3px] border-blue-800 rounded-lg h-full w-full text-2xl md:text-4xl">
                             <FaPlus />
-                            <span className="mt-2 text-lg font-semibold">Add Category</span>
+                            <span className="mt-2 text-sm md:text-lg font-semibold">Add Category</span>
                         </div>
                     </div>
                 </MainData>
             </MainSection>
-
         </>
     );
 }
