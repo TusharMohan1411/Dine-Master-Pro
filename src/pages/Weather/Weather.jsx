@@ -62,13 +62,13 @@ export default function Weather() {
                                     <p className="text-xl capitalize font-semibold text-gray-500 mt-2">{showd.description}</p>
                                 </div>
 
-                                <div className="flex min-w-1/2 w-full h-full gap-5 flex-wrap grow">
+                                <div className="flex min-w-1/2 w-full items-center justify-center lg:justify-start mx-auto h-full gap-5 flex-wrap grow">
                                     <div className="bg-white flex flex-col gap-3 justify-center items-center p-3 shadow-lg rounded-lg lg:h-56 lg:w-2/5 min-h-32 h-full w-[45%]  text-center">
                                         <h2 className="lg:text-4xl text-2xl font-bold text-black">{showd.temp} °C</h2>
                                         <p className="md:text-lg text-xs ">Temperature</p>
                                     </div>
                                     <div className="bg-white flex flex-col gap-3 justify-center items-center p-3 shadow-lg rounded-lg lg:h-56 lg:w-2/5 min-h-32 h-full w-[45%]   text-center ">
-                                        <h2 className="lg:text-4xl text-2xl font-bold text-black">{showd.feels_like.toFixed(1)} °C</h2>
+                                        <h2 className="lg:text-4xl text-2xl font-bold text-black">{showd.feels_like} °C</h2>
                                         <p className="md:text-lg text-xs ">Feels Like</p>
                                     </div>
                                     <div className="bg-white flex flex-col gap-3 justify-center items-center p-3 shadow-lg rounded-lg lg:h-56 lg:w-2/5 min-h-32 h-full w-[45%]   text-center ">

@@ -43,8 +43,8 @@ export default function useWeather({ cityName }) {
                         city: data.name,
                         icon: data.weather[0].icon,
                         description: data.weather[0].description,
-                        temp: data.main.temp,
-                        feels_like: data.main.feels_like,
+                        temp: (data.main.temp).toFixed(1),
+                        feels_like: (data.main.feels_like).toFixed(1),
                         humidity: data.main.humidity,
                         windSpeed: data.wind.speed,
                     });
