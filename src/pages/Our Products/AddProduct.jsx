@@ -66,7 +66,7 @@ const AddProductModal = forwardRef(function AddProductModal({ onClose }, ref) {
         <dialog ref={AddProductModalRef} onClose={onClose}
             className="modal-class w-full md:w-[50%] ">
             <h1 className="text-xl font-bold mb-4">Add Product</h1>
-            <form onSubmit={handleAddNewProduct} className="flex w-full md:w-4/5 flex-col gap-3">
+            <form onSubmit={handleAddNewProduct} className="flex w-full md:w-4/5 overflow-x-hidden flex-col gap-3">
                 <div>
                     <label htmlFor="name" className="modal-input-label">Name</label>
                     <input
@@ -113,7 +113,7 @@ const AddProductModal = forwardRef(function AddProductModal({ onClose }, ref) {
                             id="Ingredient"
                             placeholder="Ingredient"
                             value={ingredient}
-                            className="p-2 grow rounded border"
+                            className="p-2 w-full rounded border"
                             onChange={(e) => setIngredient(e.target.value)}
                         />
                         <button
@@ -138,7 +138,7 @@ const AddProductModal = forwardRef(function AddProductModal({ onClose }, ref) {
                             type="text"
                             placeholder="Recipe Step"
                             value={recipeStep}
-                            className="p-2 rounded border grow"
+                            className="p-2 rounded border w-full"
                             onChange={(e) => setRecipeStep(e.target.value)}
                         />
                         <button

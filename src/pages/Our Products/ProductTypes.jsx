@@ -62,8 +62,8 @@ export default function ProductTypes() {
                                 className="flex flex-col justify-evenly mb-3 cursor-pointer w-[90%] md:w-[23%] h-64 bg-white 
                             rounded-xl drop-shadow-md transition-transform duration-300 hover:scale-105 hover:z-50"
                             >
-                                <div className="w-full h-4/5">
-                                    <img src={value.image} alt={value.name} className="w-full h-full shadow-md object-cover rounded-t-xl" />
+                                <div className="product-img w-full h-4/5 overflow-hidden rounded-t-2xl">
+                                    <img src={value.image} alt={value.name} className="w-full h-full object-cover transition-transform duration-300 hover:scale-110 rounded-t-2xl" />
                                 </div>
                                 <div className="flex justify-between items-center p-2">
                                     <h1 className="text-xl font-semibold">{value.name}</h1>
