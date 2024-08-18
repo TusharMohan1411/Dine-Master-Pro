@@ -46,7 +46,7 @@ export default function EditEmployeeDetails() {
             <MainSection>
                 <MainHeader PageHeading={'Edit Employee'}>
                     <div className="flex h-full w-fit items-center">
-                        <h1 onClick={() => navigate('/employees')} className="hover:font-semibold hover:scale-105 ease-in duration-75 text-xl cursor-pointer">{'<'}Go Back</h1>
+                        <h1 onClick={() => navigate('/employees')} className="hover:font-semibold text-gray-400 hover:scale-105 ease-in duration-75 text-xl cursor-pointer">{'<'}Go Back</h1>
                     </div>
                 </MainHeader>
                 <MainData>
