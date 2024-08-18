@@ -3,6 +3,9 @@ import EmployeeModal from './EmployeeModal';
 import { useContext } from 'react';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import { useNavigate } from 'react-router-dom';
+import MainSection from '../../components/Main/MainSection';
+import MainHeader from '../../components/Main/MainHeader';
+import MainData from '../../components/Main/MainData';
 
 export default function Employees() {
 
@@ -74,10 +77,9 @@ export default function Employees() {
                     onDeleteEmployee={handleDeleteEmployee}
                 />
             }
-            <section id="employees-section" className="h-full pb-5 flex flex-col">
-                <div className="flex justify-between h-14 px-5">
-                    <h1 className="text-4xl mt-3 font-bold mb-4">Employees</h1>
-                    <div className=''>
+            <MainSection>
+                <MainHeader PageHeading={'Employees'}>
+                    <div className='flex flex-col h-4/5 md:flex-row gap-3'>
                         <input
                             onChange={(e) => setSearchedEmployee(e.target.value)}
                             type="text"
@@ -85,47 +87,50 @@ export default function Employees() {
                             id="empSearch"
                             value={searchedEmployee}
                             placeholder='Search Employees'
-                            className="px-4 h-3/4 my-auto rounded-xl shadow-sm focus:outline-none duration-200 ease-in focus:shadow-md mr-5"
+                            className="px-4 py-2 w-full md:w-56 rounded-xl shadow-sm focus:outline-none duration-200 ease-in focus:shadow-md"
                         />
-                        <select
-                            onChange={(e) => setSelectedFilter(e.target.value)}
-                            className="px-4 py-2 rounded-lg shadow-sm focus:outline-none mr-5 focus:ring-2 focus:ring-blue-500"
-                        >
-                            <option value="">Job Role</option>
-                            {uniqueRoles.map((role) => (
-                                <option value={role} key={role}>{role}</option>
-                            ))}
-                        </select>
+                        <div className="flex w-full md:w-auto gap-3">
+                            <select
+                                onChange={(e) => setSelectedFilter(e.target.value)}
+                                className="px-2 md:px-4 py-2 w-full md:w-auto rounded-lg shadow-sm text-[14px] md:text-[16px] focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            >
+                                <option value="">Job Role</option>
+                                {uniqueRoles.map((role) => (
+                                    <option value={role} key={role}>{role}</option>
+                                ))}
+                            </select>
 
-                        <button
-                            className="bg-black text-white px-8 py-2 mt-3 rounded-lg"
-                            onClick={() => navigate('/employees/addEmployee')}
-                        >Add Employee</button>
-                    </div>
-
-                </div>
-                <div className="employees-cont-main mt-2 pt-4 px-5 pb-7 flex flex-wrap gap-7 rounded-md overflow-y-scroll overflow-x-hidden cursor-pointer">
-
-                    {filteredEmployees && filteredEmployees.length > 0
-                        ? filteredEmployees.map((employee, index) => (
-                            <div
-                                onClick={() => handleEmployeePortal(employee)}
-                                key={index}
-                                className="emp-card flex flex-col items-center justify-between 
-                    hover:scale-105 duration-200 shadow-md hover:shadow-lg pb-2 bg-white rounded-xl">
-                                <div className="empImgCard w-64 h-80">
-                                    <img src={employee.image} alt={employee.name} className='w-full h-full object-cover rounded-md' />
-                                </div>
-                                <h1 className='text-black text-xl font-bold mt-2'>{employee.name}</h1>
-                                <h2>{employee.role}</h2>
-                            </div>
-                        ))
-                        : <div className='h-[200px] flex flex-col w-full text-center justify-center'>
-                            <h1 className='text-3xl font-bold'>Oops! No Employees Found...</h1>
+                            <button
+                                className="bg-black text-white px-4 text-xs md:text-[16px] py-2 w-full md:w-auto rounded-lg"
+                                onClick={() => navigate('/employees/addEmployee')}
+                            >Add Employee</button>
                         </div>
-                    }
-                </div>
-            </section>
+                    </div>
+                </MainHeader>
+                <MainData>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:grid-cols-4 xl:grid-cols-5">
+                        {filteredEmployees && filteredEmployees.length > 0
+                            ? filteredEmployees.map((employee, index) => (
+                                <div
+                                    onClick={() => handleEmployeePortal(employee)}
+                                    key={index}
+                                    className="emp-card flex flex-col items-center justify-between 
+                                    hover:scale-105 duration-200 shadow-md hover:shadow-lg pb-2 bg-white rounded-xl"
+                                >
+                                    <div className="empImgCard w-full h-40 md:h-64">
+                                        <img src={employee.image} alt={employee.name} className='w-full h-full object-cover object-top rounded-md' />
+                                    </div>
+                                    <h1 className='text-black text-[16px] md:text-xl font-bold mt-2 text-center'>{employee.name}</h1>
+                                    <h2 className='text-center text-[15px] md:text-[18px] '>{employee.role}</h2>
+                                </div>
+                            ))
+                            : <div className='h-[200px] flex flex-col w-full text-center justify-center'>
+                                <h1 className='text-3xl font-bold'>Oops! No Employees Found...</h1>
+                            </div>
+                        }
+                    </div>
+                </MainData>
+            </MainSection>
         </>
     )
 }
