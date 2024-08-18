@@ -23,7 +23,7 @@ export default function Weather() {
                         type="text"
                         name="cityName"
                         placeholder="Search City"
-                        className="px-4 h-3/4 my-auto rounded-xl shadow-sm focus:outline-none duration-200 ease-in focus:shadow-md"
+                        className="px-4 py-2 w-56 md:w-auto rounded-xl shadow-sm focus:outline-none duration-200 ease-in focus:shadow-md "
                         ref={city} />
                     <button type="submit" ><FaSearch size={20} /></button>
                 </form>
@@ -31,22 +31,22 @@ export default function Weather() {
 
             <MainData>
                 {wloading ? (
-                    <div className="text-center">
+                    <div className="text-center font-bold text-4xl">
                         <p className="text-lg font-medium">Loading Data... Please wait</p>
                     </div>
                 ) : (
-                    <div className="w-full p-6 rounded-lg">
+                    <div className="w-full p-1 rounded-lg">
                         {weatherErrorMsg ? (
                             <p className="text-red-500 font-medium">{weatherErrorMsg}</p>
                         ) : (
                             <div className="flex justify-center items-center flex-col lg:flex-row gap-5">
 
-                                <div className="bg-white md:p-5 p-3 w-full rounded-lg shadow-lg flex gap-3 flex-col ">
+                                <div className="bg-white md:p-5 p-2 w-full justify-center rounded-lg shadow-lg flex gap-1 md:gap-3 flex-col ">
                                     <div className="flex items-center">
-                                        <h1 className="text-5xl font-bold text-black">
+                                        <h1 className="md:text-5xl text-4xl font-bold text-black">
                                             {showd.city}
                                         </h1>
-                                        <div className=" w-20">
+                                        <div className="w-16 md:w-20">
                                             <img src={`https://openweathermap.org/img/wn/${showd.icon}@2x.png`}
                                                 alt="Weather Image"
                                                 className="w-full object-cover" />
@@ -63,21 +63,21 @@ export default function Weather() {
                                 </div>
 
                                 <div className="flex min-w-1/2 w-full h-full gap-5 flex-wrap grow">
-                                    <div className="bg-white flex flex-col gap-3 justify-center items-center p-3 shadow-lg rounded-lg lg:h-56 lg:w-2/5 h-full w-full  text-center">
-                                        <h2 className="text-4xl font-bold text-black">{showd.temp} °C</h2>
-                                        <p className="text-lg">Temperature</p>
+                                    <div className="bg-white flex flex-col gap-3 justify-center items-center p-3 shadow-lg rounded-lg lg:h-56 lg:w-2/5 min-h-32 h-full w-[45%]  text-center">
+                                        <h2 className="lg:text-4xl text-2xl font-bold text-black">{showd.temp} °C</h2>
+                                        <p className="md:text-lg text-xs ">Temperature</p>
                                     </div>
-                                    <div className="bg-white flex flex-col gap-3 justify-center items-center p-3 shadow-lg rounded-lg lg:h-56 lg:w-2/5 h-full w-full text-center ">
-                                        <h2 className="text-4xl font-bold text-black">{showd.feels_like} °C</h2>
-                                        <p className="text-lg">Feels Like</p>
+                                    <div className="bg-white flex flex-col gap-3 justify-center items-center p-3 shadow-lg rounded-lg lg:h-56 lg:w-2/5 min-h-32 h-full w-[45%]   text-center ">
+                                        <h2 className="lg:text-4xl text-2xl font-bold text-black">{showd.feels_like.toFixed(1)} °C</h2>
+                                        <p className="md:text-lg text-xs ">Feels Like</p>
                                     </div>
-                                    <div className="bg-white flex flex-col gap-3 justify-center items-center p-3 shadow-lg rounded-lg lg:h-56 lg:w-2/5 h-full w-full text-center ">
-                                        <h2 className="text-4xl font-bold text-black">{showd.humidity}%</h2>
-                                        <p className="text-lg">Humidity</p>
+                                    <div className="bg-white flex flex-col gap-3 justify-center items-center p-3 shadow-lg rounded-lg lg:h-56 lg:w-2/5 min-h-32 h-full w-[45%]   text-center ">
+                                        <h2 className="lg:text-4xl text-2xl font-bold text-black">{showd.humidity}%</h2>
+                                        <p className="md:text-lg text-xs ">Humidity</p>
                                     </div>
-                                    <div className="bg-white flex flex-col gap-3 justify-center items-center p-3 shadow-lg rounded-lg lg:h-56 lg:w-2/5 h-full w-full text-center ">
-                                        <h2 className="text-4xl font-bold text-black">{showd.windSpeed} Km/h</h2>
-                                        <p className="text-lg">Wind Speed</p>
+                                    <div className="bg-white flex flex-col gap-3 justify-center items-center p-3 shadow-lg rounded-lg lg:h-56 lg:w-2/5  min-h-32 h-full w-[45%]  text-center ">
+                                        <h2 className="lg:text-4xl text-2xl font-bold text-black">{showd.windSpeed}</h2>
+                                        <p className="md:text-lg text-xs ">Wind Speed (Km/h)</p>
                                     </div>
 
                                 </div>

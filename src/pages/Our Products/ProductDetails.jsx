@@ -43,11 +43,11 @@ export default function ProductDetails() {
         setShowEditModal(true)
     }
 
-    useEffect(() => {
-        if (showEditModal) {
-            editProductModalRef.current.open();
-        }
-    }, [showEditModal])
+    // useEffect(() => {
+    //     if (showEditModal) {
+    //         editProductModalRef.current.open();
+    //     }
+    // }, [showEditModal])
 
     function handleClose() {
         setShowEditModal(false)
@@ -56,7 +56,7 @@ export default function ProductDetails() {
     return (
         <>
             {showEditModal &&
-                <EditProduct ref={editProductModalRef} onClose={handleClose} currentProductToEdit={currentProduct} />
+                <EditProduct onClose={handleClose} currentProductToEdit={currentProduct} />
             }
             <MainSection>
                 <MainHeader PageHeading={'Product Details'}>
