@@ -84,7 +84,7 @@ export default function ProductDetails() {
                                     <div className="w-full h-[200px] md:h-[340px]">
                                         <img src={currentProduct.image} alt={currentProduct.name} className="w-full h-full rounded-2xl object-cover shadow-md" />
                                     </div>
-                                    <h1 className="text-[32px] md:text-[42px] font-bold mt-6 mb-1 capitalize text-gray-800">{currentProduct.name}</h1>
+                                    <h1 className="text-[28px] md:text-[42px] font-bold mt-3 md:mt-6 mb-1 capitalize text-gray-800">{currentProduct.name}</h1>
                                     <h2 className="text-2xl md:text-3xl font-semibold text-gray-600 mb-4">₹ {currentProduct.price}</h2>
                                 </div>
                                 <div className="flex w-full gap-3 justify-between">
