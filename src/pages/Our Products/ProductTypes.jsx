@@ -59,13 +59,13 @@ export default function ProductTypes() {
                             <div
                                 key={key}
                                 onClick={() => navigate(`/ProductsCategories/${categoryName}/${key}`)}
-                                className="flex flex-col cursor-pointer w-64 h-64 bg-white pb-2 
+                                className="flex flex-col justify-evenly mb-3 cursor-pointer w-[90%] md:w-[23%] h-64 bg-white 
                             rounded-xl drop-shadow-md transition-transform duration-300 hover:scale-105 hover:z-50"
                             >
-                                <div className="w-full h-52">
+                                <div className="w-full h-4/5">
                                     <img src={value.image} alt={value.name} className="w-full h-full shadow-md object-cover rounded-t-xl" />
                                 </div>
-                                <div className="mt-2 flex justify-between align-middle text-center  p-2">
+                                <div className="flex justify-between items-center p-2">
                                     <h1 className="text-xl font-semibold">{value.name}</h1>
                                     <p className="text-md text-gray-600">{value.price}</p>
                                 </div>

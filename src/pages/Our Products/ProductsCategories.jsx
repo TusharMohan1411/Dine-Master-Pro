@@ -47,7 +47,7 @@ export default function ProductsCategories() {
             }
 
             <MainSection>
-                <MainHeader PageHeading={'Our Product Categories'}>
+                <MainHeader PageHeading={'Our Products'}>
                     <input
                         type="text"
                         name="search"
@@ -59,7 +59,7 @@ export default function ProductsCategories() {
                     />
                 </MainHeader>
 
-                <MainData className="flex flex-wrap justify-center gap-6">
+                <MainData>
                     {categoryList.map(([key, category]) => (
                         <div
                             key={key}
@@ -67,7 +67,7 @@ export default function ProductsCategories() {
                             className="product-card flex flex-col items-center justify-center cursor-pointer w-[45%] md:w-[23%] h-36 md:h-64 bg-white 
                                 rounded-2xl shadow-md transition-transform duration-300 hover:scale-105 hover:z-50 hover:shadow-xl"
                         >
-                            <div className="product-img w-full h-4/5 md:h-4/5 overflow-hidden rounded-t-2xl">
+                            <div className="product-img w-full h-4/5 overflow-hidden rounded-t-2xl">
                                 <img
                                     src={category.image}
                                     alt={key}
