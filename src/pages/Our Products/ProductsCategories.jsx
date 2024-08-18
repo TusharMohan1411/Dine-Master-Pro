@@ -55,7 +55,7 @@ export default function ProductsCategories() {
                         value={searchedCategory}
                         placeholder="Search Category"
                         onChange={(e) => setSearchedCategory(e.target.value)}
-                        className="px-4 py-2 rounded-xl shadow-sm focus:outline-none duration-200 ease-in focus:shadow-md "
+                        className="px-4 py-2 w-fit md:w-auto rounded-xl shadow-sm focus:outline-none duration-200 ease-in focus:shadow-md "
                     />
                 </MainHeader>
 
@@ -64,7 +64,7 @@ export default function ProductsCategories() {
                         <div
                             key={key}
                             onClick={() => navigate(`/ProductsCategories/${key}`)}
-                            className="product-card flex flex-col items-center justify-center cursor-pointer w-[45%] md:w-[23%] h-40 md:h-64 bg-white 
+                            className="product-card flex flex-col items-center justify-center cursor-pointer w-[42%] md:w-[23%] h-36 md:h-64 bg-white 
                                 rounded-2xl shadow-md transition-transform duration-300 hover:scale-105 hover:z-50 hover:shadow-xl"
                         >
                             <div className="product-img w-full h-4/5 md:h-4/5 overflow-hidden rounded-t-2xl">
