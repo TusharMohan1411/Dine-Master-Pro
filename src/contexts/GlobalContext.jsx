@@ -4,6 +4,7 @@ import { useState } from "react";
 import useWeather from "../Hooks/useWeather";
 import PRODUCTS from "../data/products";
 import useTime from "../Hooks/useTime";
+import ALL_BILLS from "../data/billData";
 
 export const GlobalContext = createContext();
 
@@ -20,7 +21,7 @@ export default function GlobalState({ children }) {
     const [cityName, setCityName] = useState();
     const { showd, weatherErrorMsg, wloading, weatherImg } = useWeather({ cityName });
 
-    const [allBills, setAllBills] = useState([]);
+    const [allBills, setAllBills] = useState(ALL_BILLS);
     const [currentBill, setCurrentBill] = useState([]);
     const [totalSales, setTotalSales] = useState(0)
 

@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { GlobalContext } from "../../contexts/GlobalContext";
+import { PiHamburgerFill } from "react-icons/pi";
 
 export default function ProductCount() {
     const { allProducts } = useContext(GlobalContext);
@@ -10,9 +11,14 @@ export default function ProductCount() {
     }, 0);
 
     return (
-        <div className="bg-white shadow-md rounded-lg flex flex-col h-full w-full p-4 justify-center text-center">
-            <h1 className="text-2xl font-bold text-purple-500 mb-2">Total Products</h1>
-            <h1 className="text-5xl font-extrabold text-purple-500">{productsCount}</h1>
+        <div className="rounded-lg flex h-full bg-white shadow-md w-full gap-5 p-4 justify-center items-center">
+            <div>
+                <h1 className="font-bold text-blue-900"><PiHamburgerFill size={50} /></h1>
+            </div>
+            <div className="flex flex-col justify-center text-left">
+                <h1 className="text-[45px] leading-[45px] font-extrabold text-blue-900">{productsCount}</h1>
+                <h1 className="text-[20px] leading-[20px] font-bold text-blue-900">Products</h1>
+            </div>
         </div>
     );
 }
