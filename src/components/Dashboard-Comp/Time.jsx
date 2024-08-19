@@ -13,7 +13,7 @@ export default function Time() {
 
                 <div className="rounded-lg flex bg-white py-4 h-full w-full gap-5 justify-center items-center">
                     <div>
-                        <h1 className="font-bold text-blue-900"><FaClock size={50} /></h1>
+                        <h1 className="font-bold text-5xl text-blue-900"><FaClock /></h1>
                     </div>
                     <div className="flex flex-col justify-center text-left">
                         <h1 className="text-3xl font-extrabold text-blue-900">{realTime}</h1>

@@ -16,7 +16,7 @@ export default function WeatherComp() {
                     className="w-full object-cover hover:scale-110 duration-200" />
             </div>
             <div>
-                <h1 className="text-5xl font-extrabold">{showd.temp}°C</h1>
+                <h1 className="text-5xl md:text-3xl xl:text-5xl font-extrabold">{showd.temp}°C</h1>
                 <p className="text-[16px]  text-gray-500">Feels Like {showd.feels_like}°C</p>
             </div>
 

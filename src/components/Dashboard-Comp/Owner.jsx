@@ -4,7 +4,7 @@ export default function Owner() {
     return (
         <div className="flex flex-col h-full w-full gap-3 p-3 justify-evenly items-center">
             <p>Meet the Owner</p>
-            <div className='h-48 w-48 2xl:w-60 2xl:h-60'>
+            <div className='max-h-40 md:max-h-48 2xl:h-56 '>
                 <img src={OwnerImage} className='w-full h-full object-cover' alt="Owner Image" />
             </div>
             <div>
