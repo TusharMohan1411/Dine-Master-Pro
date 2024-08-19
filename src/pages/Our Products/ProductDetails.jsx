@@ -5,6 +5,7 @@ import MainSection from "../../components/Main/MainSection";
 import MainHeader from "../../components/Main/MainHeader";
 import MainData from "../../components/Main/MainData";
 import EditProduct from "./EditProductModal";
+import { AnimatePresence } from "framer-motion";
 
 export default function ProductDetails() {
 
@@ -55,9 +56,11 @@ export default function ProductDetails() {
 
     return (
         <>
-            {showEditModal &&
-                <EditProduct onClose={handleClose} ref={editProductModalRef} currentProductToEdit={currentProduct} />
-            }
+            <AnimatePresence>
+                {showEditModal &&
+                    <EditProduct onClose={handleClose} ref={editProductModalRef} currentProductToEdit={currentProduct} />
+                }
+            </AnimatePresence>
             <MainSection>
                 <MainHeader PageHeading={'Product Details'}>
                     <div className="flex flex-wrap h-full w-full md:w-fit items-center text-gray-500">

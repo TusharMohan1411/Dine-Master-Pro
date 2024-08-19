@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { forwardRef, useImperativeHandle, useRef } from "react";
 import { createPortal } from 'react-dom';
+import { motion } from 'framer-motion'
 import html2canvas from 'html2canvas';
 
 const BillModal = forwardRef(function BillModal({ bill, onReset, cancelBill }, ref) {
@@ -27,7 +28,13 @@ const BillModal = forwardRef(function BillModal({ bill, onReset, cancelBill }, r
 
 
     return createPortal(
-        <dialog
+        <motion.dialog
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 100 }}
+            transition={{
+                duration: 0.3,
+            }}
             ref={dialogBill}
             onClose={onReset}
             className="fixed flex flex-col w-full md:w-2/5 p-3 md:p-4 mx-auto items-center justify-center
@@ -61,7 +68,6 @@ const BillModal = forwardRef(function BillModal({ bill, onReset, cancelBill }, r
                                     <th className="border py-2 text-[14px] md:text-[16px] text-black">Price</th>
                                     <th className="border py-2 text-[14px] md:text-[16px] text-black">Qty</th>
                                     <th className="border py-2 text-[14px] md:text-[16px] text-black">Amount</th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -86,7 +92,7 @@ const BillModal = forwardRef(function BillModal({ bill, onReset, cancelBill }, r
                 </div>
             </div>
             <div className="flex gap-3 items-center">
-                <button type="button" onClick={() => downloadBill()}
+                <button type="button" onClick={downloadBill}
                     className="bg-black text-white text-xs md:text-[18px] px-3 md:px-8 py-2 md:py-3 mt-3 rounded-lg focus:scale-95 hover:scale-105 duration-150"
                 >
                     Download Bill
@@ -102,7 +108,7 @@ const BillModal = forwardRef(function BillModal({ bill, onReset, cancelBill }, r
                     </button>
                 }
             </div>
-        </dialog>,
+        </motion.dialog>,
         document.getElementById('modal')
     )
 })

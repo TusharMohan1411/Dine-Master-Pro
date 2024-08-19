@@ -2,6 +2,8 @@ import { forwardRef, useContext, useImperativeHandle, useRef, useState } from "r
 import { createPortal } from "react-dom";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import { useParams } from "react-router-dom";
+import { motion } from 'framer-motion'
+
 
 const AddProductModal = forwardRef(function AddProductModal({ onClose }, ref) {
     const { setAllProducts } = useContext(GlobalContext);
@@ -63,7 +65,13 @@ const AddProductModal = forwardRef(function AddProductModal({ onClose }, ref) {
     }
 
     return createPortal(
-        <dialog ref={AddProductModalRef} onClose={onClose}
+        <motion.dialog
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 100 }}
+            transition={{
+                duration: 0.3,
+            }} ref={AddProductModalRef} onClose={onClose}
             className="modal-class w-full md:w-[50%] ">
             <h1 className="text-xl font-bold mb-4">Add Product</h1>
             <form onSubmit={handleAddNewProduct} className="flex w-full md:w-4/5 overflow-x-hidden flex-col gap-3">
@@ -165,7 +173,7 @@ const AddProductModal = forwardRef(function AddProductModal({ onClose }, ref) {
                     <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-500 text-white rounded">Close</button>
                 </div>
             </form>
-        </dialog>,
+        </motion.dialog>,
         document.getElementById('modal')
     );
 });

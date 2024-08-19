@@ -1,12 +1,8 @@
-import {
-    forwardRef,
-    useContext,
-    useImperativeHandle,
-    useRef,
-    useState,
-} from "react";
+import { forwardRef, useContext, useImperativeHandle, useRef, useState, } from "react";
 import { createPortal } from "react-dom";
 import { GlobalContext } from "../../contexts/GlobalContext";
+import { motion } from 'framer-motion'
+
 
 const AddCategoryModal = forwardRef(function AddCategoryModal(
     { onClose },
@@ -40,7 +36,13 @@ const AddCategoryModal = forwardRef(function AddCategoryModal(
     }
 
     return createPortal(
-        <dialog
+        <motion.dialog
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 100 }}
+            transition={{
+                duration: 0.3,
+            }}
             ref={addCategoryModalRef}
             onClose={onClose}
             className="modal-class w-full md:w-[50%]"
@@ -87,7 +89,7 @@ const AddCategoryModal = forwardRef(function AddCategoryModal(
                     </button>
                 </div>
             </form>
-        </dialog>,
+        </motion.dialog>,
         document.getElementById("modal")
     );
 });

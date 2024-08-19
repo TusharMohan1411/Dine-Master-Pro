@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import { PiHamburgerFill } from "react-icons/pi";
+import { motion } from 'framer-motion'
 
 export default function ProductCount() {
     const { allProducts } = useContext(GlobalContext);
@@ -11,7 +12,10 @@ export default function ProductCount() {
     }, 0);
 
     return (
-        <div className="rounded-lg flex h-full bg-white shadow-md w-full py-4 gap-5 justify-center items-center">
+        <motion.div
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="rounded-lg flex h-full bg-white shadow-md w-full py-4 gap-5 justify-center items-center">
             <div>
                 <h1 className="font-bold text-blue-900"><PiHamburgerFill size={50} /></h1>
             </div>
@@ -19,6 +23,6 @@ export default function ProductCount() {
                 <h1 className="text-[45px] leading-[45px] font-extrabold text-blue-900">{productsCount}</h1>
                 <h1 className="text-[20px] leading-[20px] font-bold text-blue-900">Products</h1>
             </div>
-        </div>
+        </motion.div>
     );
 }

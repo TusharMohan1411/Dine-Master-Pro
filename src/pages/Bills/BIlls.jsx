@@ -5,6 +5,7 @@ import { GlobalContext } from "../../contexts/GlobalContext";
 import { FaTimes } from 'react-icons/fa';
 import MainData from "../../components/Main/MainData";
 import BillModal from "./BillModal";
+import { AnimatePresence, motion } from "framer-motion"
 
 export default function Bills() {
     const { allProducts, allBills, setAllBills,
@@ -142,9 +143,11 @@ export default function Bills() {
 
     return (
         <>
-            {showModal &&
-                <BillModal ref={billModal} bill={selectedBill} onReset={handleClose} cancelBill={handleCancelBill} />
-            }
+            <AnimatePresence>
+                {showModal &&
+                    <BillModal ref={billModal} bill={selectedBill} onReset={handleClose} cancelBill={handleCancelBill} />
+                }
+            </AnimatePresence>
             <MainSection>
                 <MainHeader PageHeading={'Make Bills'}></MainHeader>
                 <MainData>
@@ -222,12 +225,14 @@ export default function Bills() {
                                 </div>
 
                                 <div className="flex items-center justify-between">
-                                    <button
+                                    <motion.button
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.9 }}
                                         type="submit"
                                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                     >
                                         Add Item
-                                    </button>
+                                    </motion.button>
                                 </div>
                             </form>
                         </div>
@@ -299,9 +304,16 @@ export default function Bills() {
                                 </div>
                             </div>
                             <div className="w-full text-center">
-                                <button onClick={addCurrentBillInAllBills}
-                                    className='mt-4 bg-black hover:shadow-md hover:scale-110 duration-200 text-white font-bold py-2
-                                 px-4 rounded focus:outline-none focus:shadow-outline'>Submit Bill</button>
+                                <motion.button
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    type="submit"
+                                    onClick={addCurrentBillInAllBills}
+                                    className='mt-4 bg-black hover:shadow-md text-white font-bold py-2
+                                 px-4 rounded focus:outline-none focus:shadow-outline'
+                                >
+                                    Submit Bill
+                                </motion.button>
                             </div>
                         </div>
                     </div>

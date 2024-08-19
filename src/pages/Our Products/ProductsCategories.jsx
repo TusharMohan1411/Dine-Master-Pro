@@ -7,6 +7,7 @@ import MainData from "../../components/Main/MainData";
 import AddCategoryModal from "./AddPCategory";
 import { useNavigate } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
+import { AnimatePresence } from "framer-motion";
 
 export default function ProductsCategories() {
     const { allProducts } = useContext(GlobalContext);
@@ -42,9 +43,11 @@ export default function ProductsCategories() {
 
     return (
         <>
-            {showModal &&
-                <AddCategoryModal ref={addCategoryModal} onClose={handleClose} />
-            }
+            <AnimatePresence>
+                {showModal &&
+                    <AddCategoryModal ref={addCategoryModal} onClose={handleClose} />
+                }
+            </AnimatePresence>
 
             <MainSection>
                 <MainHeader PageHeading={'Our Products'}>

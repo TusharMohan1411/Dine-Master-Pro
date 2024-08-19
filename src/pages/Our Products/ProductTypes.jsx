@@ -6,6 +6,7 @@ import MainHeader from "../../components/Main/MainHeader";
 import MainData from "../../components/Main/MainData";
 import AddProductModal from "./AddProduct";
 import { FaPlus } from "react-icons/fa";
+import { AnimatePresence } from "framer-motion";
 
 
 export default function ProductTypes() {
@@ -38,9 +39,11 @@ export default function ProductTypes() {
 
     return (
         <>
-            {showAddProductModal &&
-                <AddProductModal ref={addProductModal} onClose={handleClose} />
-            }
+            <AnimatePresence>
+                {showAddProductModal &&
+                    <AddProductModal ref={addProductModal} onClose={handleClose} />
+                }
+            </AnimatePresence>
             <MainSection>
                 <MainHeader PageHeading={categoryName}>
                     <div className="flex h-full w-fit items-center">

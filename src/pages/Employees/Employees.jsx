@@ -6,8 +6,24 @@ import { useNavigate } from 'react-router-dom';
 import MainSection from '../../components/Main/MainSection';
 import MainHeader from '../../components/Main/MainHeader';
 import MainData from '../../components/Main/MainData';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export default function Employees() {
+
+    const containerVariants = {
+        hidden: { opacity: 1 },
+        show: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 50 },
+        show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+    };
 
     const { employees, setEmployees } = useContext(GlobalContext);
 
@@ -69,14 +85,16 @@ export default function Employees() {
 
     return (
         <>
-            {showEmployeeDialog &&
-                <EmployeeModal
-                    EmployeeDetails={currentEmployee}
-                    ref={employeesRef}
-                    onClose={onClose}
-                    onDeleteEmployee={handleDeleteEmployee}
-                />
-            }
+            <AnimatePresence>
+                {showEmployeeDialog &&
+                    <EmployeeModal
+                        EmployeeDetails={currentEmployee}
+                        ref={employeesRef}
+                        onClose={onClose}
+                        onDeleteEmployee={handleDeleteEmployee}
+                    />
+                }
+            </AnimatePresence>
             <MainSection>
                 <MainHeader PageHeading={'Employees'}>
                     <div className='flex flex-col h-4/5 md:flex-row gap-3'>
@@ -108,27 +126,34 @@ export default function Employees() {
                     </div>
                 </MainHeader>
                 <MainData>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:grid-cols-4 xl:grid-cols-5">
+                    <motion.div
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate="show"
+                        className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:grid-cols-4 xl:grid-cols-5">
                         {filteredEmployees && filteredEmployees.length > 0
                             ? filteredEmployees.map((employee, index) => (
-                                <div
+                                <motion.div
                                     onClick={() => handleEmployeePortal(employee)}
                                     key={index}
+                                    variants={itemVariants}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.9 }}
                                     className="emp-card flex flex-col items-center justify-between 
-                                    hover:scale-105 duration-200 shadow-md hover:shadow-lg pb-2 bg-white rounded-xl"
+                                     shadow-md hover:shadow-lg pb-2 bg-white rounded-xl"
                                 >
                                     <div className="empImgCard w-full h-40 md:h-64">
                                         <img src={employee.image} alt={employee.name} className='w-full h-full object-cover object-top rounded-md' />
                                     </div>
                                     <h1 className='text-black text-[16px] md:text-xl font-bold mt-2 text-center'>{employee.name}</h1>
                                     <h2 className='text-center text-[15px] md:text-[18px] '>{employee.role}</h2>
-                                </div>
+                                </motion.div>
                             ))
                             : <div className='h-[200px] flex flex-col w-full text-center justify-center'>
                                 <h1 className='text-3xl font-bold'>Oops! No Employees Found...</h1>
                             </div>
                         }
-                    </div>
+                    </motion.div>
                 </MainData>
             </MainSection>
         </>

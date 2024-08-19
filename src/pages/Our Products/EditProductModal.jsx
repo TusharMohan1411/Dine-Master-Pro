@@ -2,6 +2,7 @@ import { forwardRef, useContext, useImperativeHandle, useRef } from "react";
 import { createPortal } from "react-dom";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import { useParams } from "react-router-dom";
+import { motion } from 'framer-motion'
 
 const EditProduct = forwardRef(function EditProduct({ onClose, currentProductToEdit }, ref) {
     const editProductDialogRef = useRef();
@@ -12,7 +13,7 @@ const EditProduct = forwardRef(function EditProduct({ onClose, currentProductToE
     const ingredientsRef = useRef();
     const recipeRef = useRef();
     const { categoryName, productName } = useParams();
-    const { allProducts, setAllProducts } = useContext(GlobalContext);
+    const { setAllProducts } = useContext(GlobalContext);
 
     useImperativeHandle(ref, () => ({
         open() {
@@ -53,7 +54,13 @@ const EditProduct = forwardRef(function EditProduct({ onClose, currentProductToE
     }
 
     return createPortal(
-        <dialog
+        <motion.dialog
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 100 }}
+            transition={{
+                duration: 0.3,
+            }}
             ref={editProductDialogRef}
             onClose={onClose}
             className="modal-class w-full md:w-[50%]"
@@ -137,7 +144,7 @@ const EditProduct = forwardRef(function EditProduct({ onClose, currentProductToE
                     </button>
                 </div>
             </form>
-        </dialog>,
+        </motion.dialog>,
         document.getElementById("modal")
     );
 });

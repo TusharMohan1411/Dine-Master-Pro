@@ -10,7 +10,7 @@ import ProductTypes from "./pages/Our Products/ProductTypes";
 import ProductDetails from "./pages/Our Products/ProductDetails";
 import EditEmployeeDetails from "./pages/Employees/EditEmployee";
 
-function App() {
+export default function App() {
 
   const router = createBrowserRouter([
     {
@@ -57,5 +57,4 @@ function App() {
   )
 }
 
-export default App;
 

@@ -4,6 +4,8 @@ import { createPortal } from 'react-dom';
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { motion } from 'framer-motion'
+
 
 const EmployeeModal = forwardRef(function EmployeeModal({ EmployeeDetails, onClose, onDeleteEmployee }, ref) {
     const dialogEmployee = useRef();
@@ -18,7 +20,13 @@ const EmployeeModal = forwardRef(function EmployeeModal({ EmployeeDetails, onClo
     })
 
     return createPortal(
-        <dialog
+        <motion.dialog
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.5 }}
+            transition={{
+                duration: 0.3,
+            }}
             ref={dialogEmployee}
             className="modal-class gap-4 lg:gap-6 flex-col lg:flex-row w-full justify-between md:w-[40%]"
             onClose={onClose}
@@ -58,7 +66,7 @@ const EmployeeModal = forwardRef(function EmployeeModal({ EmployeeDetails, onClo
                         <FaEdit size={30} /></button>
                 </div>
             </div>
-        </dialog>, document.getElementById('modal')
+        </motion.dialog>, document.getElementById('modal')
     )
 }
 )
