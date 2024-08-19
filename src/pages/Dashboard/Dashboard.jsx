@@ -17,7 +17,7 @@ export default function Dashboard() {
 
                 <div className="grid gap-3 md:gap-6 pb-2 md:grid-rows-6 grid-cols-4 md:overflow-y-hidden max-h-full w-full">
 
-                    <div className="p-1 col-span-4 md:mt-0 mt-4 md:h-full h-[390px] md:col-span-3 min-h-32 row-span-6 md:row-span-2">
+                    <div className="p-1 col-span-4 md:h-full h-[340px] md:col-span-3 min-h-32 row-span-6 md:row-span-2">
                         <Banner />
                     </div>
 
@@ -53,7 +53,7 @@ export default function Dashboard() {
                                 <TotalSales />
                             </div>
                         </div>
-                        <div className='w-full md:w-3/4'>
+                        <div className='w-full md:h-full md:w-3/4'>
                             <PopularProducts />
                         </div>
                     </div>

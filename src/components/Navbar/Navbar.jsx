@@ -17,8 +17,8 @@ export default function Navbar() {
     ];
 
 
-    const navClass = 'text-white flex gap-3 md:text-xl ease-in duration-200 ';
-    const activeNavClass = 'text-yellow-200  md:translate-x-2';
+    const navClass = 'text-white flex gap-3 text-white md:text-xl ease-in duration-200 ';
+    const activeNavClass = 'text-[#42f2f5] md:translate-x-2';
 
     return (
         <div className="h-full bg-[#F5F6FD] p-0 md:p-[20px] flex md:w-auto ">
