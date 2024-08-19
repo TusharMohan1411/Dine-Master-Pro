@@ -17,13 +17,13 @@ export default function Navbar() {
     ];
 
 
-    const navClass = 'text-white flex gap-3 text-white md:text-xl ease-in duration-200 ';
-    const activeNavClass = 'text-[#42f2f5] md:translate-x-2';
+    const navClass = 'text-white flex gap-3 md:text-xl ease-in duration-200 ';
+    const activeNavClass = 'md:translate-x-2 text-yellow-300 md:text-[#00ffea] md:scale-100 scale:110';
 
     return (
         <div className="h-full bg-[#F5F6FD] p-0 md:p-[20px] flex md:w-auto ">
             <div
-                className={`bg-[#06163a] md:w-[210px] w-[40px] lg:w-[280px] text-white md:rounded-2xl shadow-lg 
+                className={`bg-[#06163a] md:w-[210px] w-[40px] lg:w-[280px] text-white  md:rounded-2xl shadow-lg 
                     h-full p-2 md:p-5`}
             >
                 <div className="flex">
