@@ -21,6 +21,25 @@
   border-radius: 15px;
 }
 
+@media only screen and (max-width: 600px) {
+  .scrollable-element::-webkit-scrollbar {
+    width: 1px; 
+  }
+  
+  .scrollable-element::-webkit-scrollbar-track {
+    background: #F5F6FD; 
+  }
+  
+  .scrollable-element::-webkit-scrollbar-thumb {
+    background: #F5F6FD; 
+    border-radius: 15px;
+  }
+  
+  .scrollable-element::-webkit-scrollbar-thumb:hover {
+    background: #a7a7a7; 
+    border-radius: F5F6FD;
+  }
+}
 
 *{
   margin: 0;

@@ -11,7 +11,7 @@ export default function Time() {
         <div className=" shadow-md bg-white rounded-lg flex flex-col h-full w-full text-center justify-center">
             {!timeLoading ?
 
-                <div className="rounded-lg flex bg-white h-full w-full gap-5 justify-center items-center">
+                <div className="rounded-lg flex bg-white py-4 h-full w-full gap-5 justify-center items-center">
                     <div>
                         <h1 className="font-bold text-blue-900"><FaClock size={50} /></h1>
                     </div>

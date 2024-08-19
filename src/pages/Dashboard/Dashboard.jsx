@@ -12,12 +12,12 @@ import Banner from '../../components/Dashboard-Comp/Banner';
 export default function Dashboard() {
     return (
         <MainSection>
-            <div className="Dashboard-cont-main mt-1 md:overflow-hidden pr-5 flex-grow
-             flex overflow-x-hidden w-full h-screen scrollable-element">
+            <div className="Dashboard-cont-main mt-1 overflow-y-scroll md:overflow-hidden px-2 md:px-5 flex-grow
+             flex w-full h-screen scrollable-element">
 
-                <div className="grid gap-3 md:gap-6 pb-2 md:grid-rows-6 grid-cols-4 overflow-y-hidden max-h-full w-full">
+                <div className="grid gap-3 md:gap-6 pb-2 md:grid-rows-6 grid-cols-4 md:overflow-y-hidden max-h-full w-full">
 
-                    <div className="p-1 col-span-4 md:col-span-3 min-h-32 md:row-span-2">
+                    <div className="p-1 col-span-4 md:mt-0 mt-4 md:h-full h-[390px] md:col-span-3 min-h-32 row-span-6 md:row-span-2">
                         <Banner />
                     </div>
 
@@ -32,20 +32,20 @@ export default function Dashboard() {
 
                     </div>
 
-                    <div className="rounded-xl col-span-2 md:col-span-1 flex justify-center items-center h-full w-full">
+                    <div className="rounded-xl col-span-4 md:col-span-1 flex justify-center items-center h-full w-full">
                         <EmpCount />
                     </div>
 
-                    <div className="col-span-2 md:col-span-1  h-fullrounded-xl">
+                    <div className="col-span-4 md:col-span-1 h-fullrounded-xl">
                         <ProductCount />
                     </div>
 
-                    <div className="col-span-2 md:col-span-1 rounded-xl">
+                    <div className="col-span-4 md:col-span-1 rounded-xl">
                         <Time />
                     </div>
 
-                    <div className="flex gap-3 col-span-4 md:col-span-3 p-2 row-span-3 rounded-xl">
-                        <div className='grow flex h-full flex-col justify-evenly'>
+                    <div className="flex md:flex-row flex-col gap-3 col-span-4 md:col-span-3 mt-4 md:mt-0 p-2 row-span-3 rounded-xl">
+                        <div className='grow flex h-full flex-row md:flex-col justify-evenly md:items-start items-center'>
                             <div>
                                 <OrdersCount />
                             </div>
@@ -53,7 +53,7 @@ export default function Dashboard() {
                                 <TotalSales />
                             </div>
                         </div>
-                        <div className='w-3/4'>
+                        <div className='w-full md:w-3/4'>
                             <PopularProducts />
                         </div>
                     </div>

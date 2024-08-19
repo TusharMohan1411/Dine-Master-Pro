@@ -11,7 +11,7 @@ export default function ProductCount() {
     }, 0);
 
     return (
-        <div className="rounded-lg flex h-full bg-white shadow-md w-full gap-5 p-4 justify-center items-center">
+        <div className="rounded-lg flex h-full bg-white shadow-md w-full py-4 gap-5 justify-center items-center">
             <div>
                 <h1 className="font-bold text-blue-900"><PiHamburgerFill size={50} /></h1>
             </div>

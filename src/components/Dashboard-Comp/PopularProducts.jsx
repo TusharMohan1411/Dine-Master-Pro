@@ -19,7 +19,7 @@ export default function PopularProducts() {
 
     return (
         <div className='pt-4 h-full flex flex-col justify-between'>
-            <h1 className='font-bold text-xl text-center text-blue-900 '>Revenue Chart</h1>
+            <h1 className='font-bold text-xl mb-4 md:mb-0 text-center text-blue-900 '>Revenue Chart</h1>
             <div className='h-5/6'>
                 <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={data}>
